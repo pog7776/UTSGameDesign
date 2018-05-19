@@ -13,6 +13,9 @@ TagManager:
   - BombPickup
   - ExplosionFX
   - HealthBar
+  - Objects
+  - Explosion
+  - Projectile
   layers:
   - Default
   - TransparentFX
@@ -28,8 +31,8 @@ TagManager:
   - Pickups
   - Ground
   - Objects
-  - 
-  - 
+  - Projectile
+  - Explosion
   - 
   - 
   - 

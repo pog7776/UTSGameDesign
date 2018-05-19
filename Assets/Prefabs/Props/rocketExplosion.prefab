@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 58420918444753156}
   m_Layer: 0
   m_Name: rocketExplosion
-  m_TagString: Untagged
+  m_TagString: Explosion
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 10.886221, y: 0.47358346, z: -6.183838}
+  m_LocalPosition: {x: 5.910606, y: -5.789386, z: -6.183838}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children: []
   m_Father: {fileID: 0}

@@ -6,10 +6,9 @@ public class Gun : MonoBehaviour
 	public Rigidbody2D rocket;				// Prefab of the rocket.
 	public float speed = 20f;				// The speed the rocket will fire at.
 
-
-	private PlayerControl playerCtrl;		// Reference to the PlayerControl script.
+    
+    private PlayerControl playerCtrl;		// Reference to the PlayerControl script.
 	private Animator anim;					// Reference to the Animator component.
-
 
 	void Awake()
 	{
@@ -21,8 +20,12 @@ public class Gun : MonoBehaviour
 
 	void Update ()
 	{
-		// If the fire button is pressed...
-		if(Input.GetButtonDown("Fire1"))
+
+        //was for mouse directional shooting
+        //Vector2 cursorInWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+
+        // If the fire button is pressed...
+        if (Input.GetButtonDown("Fire1"))
 		{
 			// ... set the animator Shoot trigger parameter and play the audioclip.
 			anim.SetTrigger("Shoot");
