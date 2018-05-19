@@ -11,8 +11,8 @@ public class Bomb : MonoBehaviour
 	public GameObject explosion;			// Prefab of explosion effect.
 
 
-	private LayBombs layBombs;				// Reference to the player's LayBombs script.
-	private PickupSpawner pickupSpawner;	// Reference to the PickupSpawner script.
+	//private LayBombs layBombs;				// Reference to the player's LayBombs script.
+	//private PickupSpawner pickupSpawner;	// Reference to the PickupSpawner script.
 	private ParticleSystem explosionFX;		// Reference to the particle system of the explosion effect.
 
 
@@ -20,9 +20,9 @@ public class Bomb : MonoBehaviour
 	{
 		// Setting up references.
 		explosionFX = GameObject.FindGameObjectWithTag("ExplosionFX").GetComponent<ParticleSystem>();
-		pickupSpawner = GameObject.Find("pickupManager").GetComponent<PickupSpawner>();
-		if(GameObject.FindGameObjectWithTag("Player"))
-			layBombs = GameObject.FindGameObjectWithTag("Player").GetComponent<LayBombs>();
+		//pickupSpawner = GameObject.Find("pickupManager").GetComponent<PickupSpawner>();
+		//if(GameObject.FindGameObjectWithTag("Player"))
+			//layBombs = GameObject.FindGameObjectWithTag("Player").GetComponent<LayBombs>();
 	}
 
 	void Start ()
@@ -51,10 +51,10 @@ public class Bomb : MonoBehaviour
 	{
 		
 		// The player is now free to lay bombs when he has them.
-		layBombs.bombLaid = false;
+		//layBombs.bombLaid = false;
 
 		// Make the pickup spawner start to deliver a new pickup.
-		pickupSpawner.StartCoroutine(pickupSpawner.DeliverPickup());
+		//pickupSpawner.StartCoroutine(pickupSpawner.DeliverPickup());
 
 		// Find all the colliders on the Enemies layer within the bombRadius.
 		Collider2D[] enemies = Physics2D.OverlapCircleAll(transform.position, bombRadius, 1 << LayerMask.NameToLayer("Enemies"));
