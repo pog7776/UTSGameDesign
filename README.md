@@ -44,6 +44,8 @@ Esc:              Restart scene
   <ul>
     <li>Additional player characters</li>
     <li>Level Props</li>
+    <li>UI</li>
+    <li>Extra functions (quit, save, etc.)</li>
   </ul>
 <br>
 
