@@ -19,13 +19,13 @@ public class PlayerControl : MonoBehaviour
 
     public float playerSpeed;
 
-    public float OriginalJump = 700;
-    public float OriginalX = 1;
-    public float CrouchJump = 350;
-    public float crouchX = 0.5f;
+    public float originalJump = 700;
+    public float originalSpeed = 1;
+    public float crouchJump = 350;
+    public float crouchSpeed = 0.5f;
 
     public Transform ceilingCheck;
-    private bool ceiled;                    //Check if cieling is above player
+    private bool ceiled;                    //Check if ceiling is above player
     private float crouch;
     public bool crouching;
 
@@ -53,6 +53,9 @@ public class PlayerControl : MonoBehaviour
 	{
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")) || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Enemies")) || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Objects"));
+
+        //Check if ceiling is above player
+        ceiled = Physics2D.Linecast(transform.position, ceilingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         if (grounded)
         {
@@ -93,8 +96,6 @@ public class PlayerControl : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-
-        ceiled = Physics2D.Linecast(transform.position, ceilingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         // Cache the horizontal input.
         float h = Input.GetAxis("Horizontal");

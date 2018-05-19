@@ -49,6 +49,7 @@ GameObject:
   - component: {fileID: 8200004}
   - component: {fileID: 61728306165977482}
   - component: {fileID: 58743341981772694}
+  - component: {fileID: 61496685202213804}
   - component: {fileID: 114152428447983548}
   m_Layer: 9
   m_Name: hero
@@ -64,8 +65,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.034, z: 0}
-  m_LocalScale: {x: 0.999999, y: 0.999999, z: 0.999999}
+  m_LocalPosition: {x: -0.01, y: 0.034, z: 0}
+  m_LocalScale: {x: 0.05, y: 0.05, z: 0.05}
   m_Children: []
   m_Father: {fileID: 400020}
   m_RootOrder: 3
@@ -90,7 +91,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.02, y: 1.37, z: 0}
+  m_LocalPosition: {x: 0.43, y: -0.54, z: 0}
   m_LocalScale: {x: 4.8614345, y: 4.8614345, z: 4.8614345}
   m_Children:
   - {fileID: 4623924995950758}
@@ -231,7 +232,7 @@ AudioSource:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100020}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
@@ -366,6 +367,11 @@ MonoBehaviour:
   - {fileID: 8300000, guid: ddd0ca15e5d0a42b98f08337c1690bb1, type: 3}
   tauntProbability: 50
   tauntDelay: 1
+  playerSpeed: 0
+  originalJump: 700
+  originalSpeed: 1
+  crouchJump: 350
+  crouchSpeed: 0.5
   ceilingCheck: {fileID: 400010}
   crouching: 0
   grounded: 0
@@ -440,7 +446,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1142429724712306}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.13, z: 0}
+  m_LocalPosition: {x: 0, y: -0.1945, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 400020}
@@ -510,6 +516,31 @@ CircleCollider2D:
   m_Offset: {x: 0.01, y: -0.11}
   serializedVersion: 2
   m_Radius: 0.05
+--- !u!61 &61496685202213804
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100020}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.053056277, y: 0.030291174}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.32, y: 0.32}
+    newSize: {x: 0.32, y: 0.32}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.033103168, y: 0.0796495}
+  m_EdgeRadius: 0
 --- !u!61 &61728306165977482
 BoxCollider2D:
   m_ObjectHideFlags: 1
@@ -555,6 +586,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   stand: {fileID: 6100000}
   crouch: {fileID: 61728306165977482}
+  faceSpace: {fileID: 61496685202213804}
   circle: {fileID: 58743341981772694}
 --- !u!124 &124717616747504980
 Behaviour:

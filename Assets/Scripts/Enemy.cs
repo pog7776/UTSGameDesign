@@ -22,40 +22,42 @@ public class Enemy : MonoBehaviour
 	void Awake()
 	{
 		// Setting up the references.
-		ren = transform.Find("body").GetComponent<SpriteRenderer>();
-		frontCheck = transform.Find("frontCheck").transform;
-		score = GameObject.Find("Score").GetComponent<Score>();
+		//ren = transform.Find("body").GetComponent<SpriteRenderer>();
+		//frontCheck = transform.Find("frontCheck").transform;
+		//score = GameObject.Find("Score").GetComponent<Score>();
 	}
 
 	void FixedUpdate ()
 	{
+            //this was to make the enemy turn around when it hits a wall or object
+
 		// Create an array of all the colliders in front of the enemy.
-		Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
+		//Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 
 		// Check each of the colliders.
-		foreach(Collider2D c in frontHits)
-		{
+		//foreach(Collider2D c in frontHits)
+		//{
 			// If any of the colliders is an Obstacle...
-			if(c.tag == "Obstacle")
-			{
+			//if(c.tag == "Obstacle")
+			//{
 				// ... Flip the enemy and stop checking the other colliders.
-				Flip ();
-				break;
-			}
-		}
+				//Flip ();
+				//break;
+			//}
+		//}
 
 		// Set the enemy's velocity to moveSpeed in the x direction.
-		GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);	
+		//GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);	
 
 		// If the enemy has one hit point left and has a damagedEnemy sprite...
-		if(HP == 1 && damagedEnemy != null)
+		//if(HP == 1 && damagedEnemy != null)
 			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
-			ren.sprite = damagedEnemy;
+			//ren.sprite = damagedEnemy;
 			
 		// If the enemy has zero or fewer hit points and isn't dead yet...
-		if(HP <= 0 && !dead)
+		//if(HP <= 0 && !dead)
 			// ... call the death function.
-			Death ();
+			//Death ();
 	}
 	
 	public void Hurt()
