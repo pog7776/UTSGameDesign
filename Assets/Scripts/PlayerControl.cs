@@ -17,10 +17,23 @@ public class PlayerControl : MonoBehaviour
 	public float tauntProbability = 50f;	// Chance of a taunt happening.
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
 
+    public float playerSpeed;
 
-	private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
+    public float OriginalJump = 700;
+    public float OriginalX = 1;
+    public float CrouchJump = 350;
+    public float crouchX = 0.5f;
+
+    public Transform ceilingCheck;
+    private bool ceiled;                    //Check if cieling is above player
+    private float crouch;
+    public bool crouching;
+
+   
+
+    private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
-	private bool grounded = false;			// Whether or not the player is grounded.
+	public bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
     private Rigidbody rb;
     private GameObject gameObject;
@@ -39,26 +52,54 @@ public class PlayerControl : MonoBehaviour
 	void Update()
 	{
 		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
-		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")) || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Enemies")) || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Objects"));
+
+        if (grounded)
+        {
+            anim.SetBool("OnGround", true);
+        }
+        else
+        {
+            anim.SetBool("OnGround", false);
+        }
 
         // If the jump button is pressed and the player is grounded then the player should jump.
         if (Input.GetButtonDown("Jump") && grounded)
         {
             jump = true;
+                //flag for animator
             anim.SetBool("Jump", true);
         }
         else
         {
             anim.SetBool("Jump", false);
         }
-	}
+
+        // Crouch
+        crouch = Input.GetAxisRaw("Crouch");
+        if (crouch != 0 || ceiled == true && grounded == true)
+        {
+            //flag for animator
+            crouching = true;
+            anim.SetBool("Crouch", true);
+        }
+        else
+        {
+            crouching = false;
+            anim.SetBool("Crouch", false);
+        }
+    }
 
 
 	void FixedUpdate ()
 	{
+
+        ceiled = Physics2D.Linecast(transform.position, ceilingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
         // Cache the horizontal input.
         float h = Input.GetAxis("Horizontal");
 
+        //Flags character as moving for animator
         if (h != 0)
             anim.SetBool("IsMoving", true);
         else{
@@ -66,7 +107,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         // making sure the charater does not fly off the screen
-        float x = h * Time.deltaTime * maxSpeed;
+        playerSpeed = h * Time.deltaTime * maxSpeed;
 
 		// The Speed animator parameter is set to the absolute value of the horizontal input.
 		anim.SetFloat("Speed", Mathf.Abs(h));
@@ -100,7 +141,7 @@ public class PlayerControl : MonoBehaviour
         //	// ... set the player's velocity to the maxSpeed in the x axis.
         //	GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
-        transform.Translate(x, 0, 0);
+        transform.Translate(playerSpeed, 0, 0);
 
 
         // If the input is moving the player right and the player is facing left...

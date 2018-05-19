@@ -50,8 +50,8 @@ public class PlayerHealth : MonoBehaviour
 					Collider2D[] cols = GetComponents<Collider2D>();
 					foreach(Collider2D c in cols)
 					{
-						c.isTrigger = true;
-					}
+						//c.isTrigger = true;
+                    }
 
 					// Move all sprite parts of the player to the front
 					SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
@@ -68,6 +68,7 @@ public class PlayerHealth : MonoBehaviour
 
 					// ... Trigger the 'Die' animation state
 					anim.SetTrigger("Die");
+                    anim.SetTrigger("Dead");
 				}
 			}
 		}
