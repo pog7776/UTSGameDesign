@@ -3,6 +3,7 @@ using System.Collections;
 
 public class Rocket : MonoBehaviour
 {
+    public float rocketLife = 2;        //how long the rocket will survive before disappearing if not exploded
     public GameObject explosion;		// Prefab of explosion effect.
     public bool ExplosionTriggerProjectile = false;
 
@@ -10,7 +11,7 @@ public class Rocket : MonoBehaviour
     void Start()
     {
         // Destroy the rocket after 2 seconds if it doesn't get destroyed before then.
-        Destroy(gameObject, 2);
+        Destroy(gameObject, rocketLife);
     }
 
 
