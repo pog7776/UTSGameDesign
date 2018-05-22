@@ -21,7 +21,9 @@ Esc:              Restart scene
 
 <b>To do:</b>
 <ul>
-  <li>Fix crouch (when coming out from platform)(and add down arrow)</li>
+  <li><s>Fix crouch (when coming out from platform)(and add down arrow)</s></li>
+   
+  <li>Stop player from sinking into walls</li>
   
   <li>Fix collision detection from pushing character under platform at around head hight</li>
   
@@ -42,7 +44,7 @@ Esc:              Restart scene
 <br>    
   <b>Create</b>
   <ul>
-    <li>Additional player characters</li>
+    <li>Additional player characters & mechanics</li>
     <li>Level Props</li>
     <li>UI</li>
     <li>Extra functions (quit, save, etc.)</li>
