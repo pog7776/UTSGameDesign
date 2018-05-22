@@ -12,7 +12,9 @@ D / right arrow:  Right
 
 S / Down:         Crouch
 
-Click / Ctrl:     Fire projectile
+Lmb / Ctrl:       Fire projectile
+
+Rmb:              Slash attack
 
 Esc:              Restart scene
 
