@@ -15,11 +15,27 @@ public class Enemy : MonoBehaviour
 
 	private SpriteRenderer ren;			// Reference to the sprite renderer.
 	private Transform frontCheck;		// Reference to the position of the gameobject used for checking if something is in front.
-	private bool dead = false;			// Whether or not the enemy is dead.
-	//private Score score;				// Reference to the Score script.
+	private bool dead = false;          // Whether or not the enemy is dead.
+                                        //private Score score;				// Reference to the Score script.
 
-	
-	void Awake()
+    public LayerMask enemyMask;
+    public float speed;
+    Rigidbody2D myRigidbody;
+    Transform myTransform;
+    float width;
+
+
+    private void Start()
+    {
+        myTransform = this.transform;
+        myRigidbody = this.GetComponent<Rigidbody2D>();
+        width = this.GetComponent<SpriteRenderer>().bounds.extents.x;
+    }
+
+
+
+
+    void Awake()
 	{
 		// Setting up the references.
 		//ren = transform.Find("body").GetComponent<SpriteRenderer>();
@@ -29,36 +45,65 @@ public class Enemy : MonoBehaviour
 
 	void FixedUpdate ()
 	{
-            //this was to make the enemy turn around when it hits a wall or object
+        Vector2 linecast = myTransform.position + myTransform.right * width;
+        //Debug.DrawLine(linecast, linecast + Vector2.down);
+        bool isGrounded = Physics2D.Linecast(linecast, linecast + Vector2.down, enemyMask);
+        bool isHittingWall = false;
 
-		// Create an array of all the colliders in front of the enemy.
-		//Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
 
-		// Check each of the colliders.
-		//foreach(Collider2D c in frontHits)
-		//{
-			// If any of the colliders is an Obstacle...
-			//if(c.tag == "Obstacle")
-			//{
-				// ... Flip the enemy and stop checking the other colliders.
-				//Flip ();
-				//break;
-			//}
-		//}
 
-		// Set the enemy's velocity to moveSpeed in the x direction.
-		//GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);	
+        if ((int)myTransform.eulerAngles.y == 0)
+        {
+           // Debug.DrawLine(linecast, linecast + Vector2.right);
+            isHittingWall = Physics2D.Linecast(linecast, linecast + Vector2.right, enemyMask);
+        }
+        else
+        {
+           // Debug.DrawLine(linecast, linecast + Vector2.left);
+            isHittingWall = Physics2D.Linecast(linecast, linecast + Vector2.left, enemyMask);
+        }
 
-		// If the enemy has one hit point left and has a damagedEnemy sprite...
-		//if(HP == 1 && damagedEnemy != null)
-			// ... set the sprite renderer's sprite to be the damagedEnemy sprite.
-			//ren.sprite = damagedEnemy;
-			
-		// If the enemy has zero or fewer hit points and isn't dead yet...
-		//if(HP <= 0 && !dead)
-			// ... call the death function.
-			//Death ();
-	}
+        if (!isGrounded || isHittingWall)
+        {
+            Vector3 currentRotation = myTransform.eulerAngles;
+            currentRotation.y += 180;
+            myTransform.eulerAngles = currentRotation;
+        }
+
+        Vector2 myVelocity = myRigidbody.velocity;
+        myVelocity.x = myTransform.right.x * speed;
+        myRigidbody.velocity = myVelocity;
+
+        //this was to make the enemy turn around when it hits a wall or object
+
+        // Create an array of all the colliders in front of the enemy.
+        //Collider2D[] frontHits = Physics2D.OverlapPointAll(frontCheck.position, 1);
+
+        // Check each of the colliders.
+        //foreach(Collider2D c in frontHits)
+        //{
+        // If any of the colliders is an Obstacle...
+        //if(c.tag == "Obstacle")
+        //{
+        // ... Flip the enemy and stop checking the other colliders.
+        //Flip ();
+        //break;
+        //}
+        //}
+
+        // Set the enemy's velocity to moveSpeed in the x direction.
+        //GetComponent<Rigidbody2D>().velocity = new Vector2(transform.localScale.x * moveSpeed, GetComponent<Rigidbody2D>().velocity.y);	
+
+        // If the enemy has one hit point left and has a damagedEnemy sprite...
+        //if(HP == 1 && damagedEnemy != null)
+        // ... set the sprite renderer's sprite to be the damagedEnemy sprite.
+        //ren.sprite = damagedEnemy;
+
+        // If the enemy has zero or fewer hit points and isn't dead yet...
+        //if(HP <= 0 && !dead)
+        // ... call the death function.
+        //Death ();
+    }
 	
 	public void Hurt()
 	{
