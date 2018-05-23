@@ -29,7 +29,7 @@ Esc:              Restart scene
   
   <li>Fix collision detection from pushing character under platform at around head hight</li>
   
-  <li>Fix issue with character sprites being pixely when built and run from exe</li>
+  <li><s>Fix issue with character sprites being pixely when built and run from exe</s> Turns out this happened beacuse graphics settings were set to "Fastest" (anything above fastest will be fine)</li>
 </ul>
   
 <br>
