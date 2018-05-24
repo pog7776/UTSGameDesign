@@ -18,6 +18,7 @@ public class PlayerControl : MonoBehaviour
 	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
 
     public float playerSpeed;
+    public float h;
 
     public float originalJump = 700;
     public float originalSpeed = 1;
@@ -25,9 +26,14 @@ public class PlayerControl : MonoBehaviour
     public float crouchSpeed = 0.5f;
 
     public Transform ceilingCheck;
+    public Transform wallCheck;
+    public Transform wallCheckCrouch;
     private bool ceiled;                    //Check if ceiling is above player
     private float crouch;
+
     public bool crouching;
+    public bool wall;
+    public bool wallCrouch;
 
    
 
@@ -56,6 +62,10 @@ public class PlayerControl : MonoBehaviour
 
         //Check if ceiling is above player
         ceiled = Physics2D.Linecast(transform.position, ceilingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+
+        //Check if wall infront of player
+        wall = Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        //wallCrouch = Physics2D.Linecast(transform.position, wallCheckCrouch.position, 1 << LayerMask.NameToLayer("Ground"));
 
         if (grounded)
         {
@@ -98,10 +108,10 @@ public class PlayerControl : MonoBehaviour
 	{
 
         // Cache the horizontal input.
-        float h = Input.GetAxis("Horizontal");
+        h = Input.GetAxis("Horizontal");
 
         //Flags character as moving for animator
-        if (h != 0)
+        if (h != 0 && wall == false)
             anim.SetBool("IsMoving", true);
         else{
             anim.SetBool("IsMoving", false);
@@ -110,8 +120,20 @@ public class PlayerControl : MonoBehaviour
         // making sure the charater does not fly off the screen
         playerSpeed = h * Time.deltaTime * maxSpeed;
 
-		// The Speed animator parameter is set to the absolute value of the horizontal input.
-		anim.SetFloat("Speed", Mathf.Abs(h));
+        if (wall == true || wallCrouch == true)
+        {
+            playerSpeed = 0;
+        }
+
+        // The Speed animator parameter is set to the absolute value of the horizontal input.
+        if (wall == false)
+        {
+            anim.SetFloat("Speed", Mathf.Abs(h));
+        }
+        else
+        {
+            anim.SetFloat("Speed", 0);
+        }
 
 
         // If the player is changing direction (h has a different sign to velocity.x) or hasn't reached maxSpeed yet...

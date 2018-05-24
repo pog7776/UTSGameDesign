@@ -24,12 +24,14 @@ public class ColliderControl : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+
         if (playerC.grounded == false)
         {
             stand.enabled = true;
             faceSpace.enabled = true;
             crouch.enabled = false;
             circle.enabled = false;
+
         }
         else
         {
@@ -49,6 +51,7 @@ public class ColliderControl : MonoBehaviour {
             }
         }
 
+        //crouch speeds
         if(crouch.enabled == true)
         {
             playerC.playerSpeed = playerC.crouchSpeed;
