@@ -10,7 +10,7 @@ public class Enemy : MonoBehaviour
         Attack = 1
     }
 
-
+    private Animator anim;			    // Reference to the animator component.
     public float moveSpeed = 2f;        // The speed the enemy moves at.
     public int HP = 2;                  // How many times the enemy can be hit before it dies.
     public Sprite deadEnemy;            // A sprite of the enemy when it's dead.
@@ -56,10 +56,13 @@ public class Enemy : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (HP < 0)
+        if (HP <= 0)
         {
-           // GameObject.FindWithTag("enemy").SetActive = false;
+            Destroy(gameObject);
+            // GameObject.FindWithTag("enemy").SetActive = false;
+            //anim.SetTrigger("Dead");
         }
+
         Vector2 linecast = myTransform.position + myTransform.right * width;
         if ((int)myTransform.eulerAngles.y == 0)
         {

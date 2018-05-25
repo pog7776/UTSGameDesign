@@ -28,7 +28,6 @@ public class PlayerControl : MonoBehaviour
     private Transform player;
     public Transform ceilingCheck;
     public Transform wallCheck;
-    public Transform wallCheckCrouch;
     private bool ceiled;                    //Check if ceiling is above player
     private float crouch;
 

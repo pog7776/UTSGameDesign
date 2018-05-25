@@ -407,7 +407,6 @@ MonoBehaviour:
   crouchSpeed: 0.5
   ceilingCheck: {fileID: 400010}
   wallCheck: {fileID: 0}
-  wallCheckCrouch: {fileID: 0}
   crouching: 0
   wall: 0
   wallCrouch: 0
@@ -432,6 +431,8 @@ MonoBehaviour:
   - {fileID: 8300000, guid: 4baef03e1cc8f4ab69708f3aedbce21c, type: 3}
   hurtForce: 60
   damageAmount: 10.01
+  rocketDamageAmount: 5
+  explosion: {fileID: 0}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

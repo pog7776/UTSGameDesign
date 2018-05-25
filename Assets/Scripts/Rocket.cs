@@ -51,13 +51,19 @@ public class Rocket : MonoBehaviour
             Destroy(gameObject);
         }
         // Otherwise if the player manages to shoot himself...
-        else if (col.gameObject.tag == "Player")            //dont collide with explosion add this     || col.gameObject.tag != "Explosion"
+        else if (col.gameObject.tag == "Player")
         {
-            // Instantiate the explosion and destroy the rocket.
-            //OnExplode();
-            //Destroy(gameObject);
+            //Put stuff here
         }
-        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Object")
+        //Rocket collide with explosion
+        else if (col.gameObject.tag != "Explosion" && ExplosionTriggerProjectile == true)
+        {
+            OnExplode();
+            Destroy(gameObject);
+        }
+
+        //collide with wall, ground and objects
+        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Object" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain")
         {
             OnExplode();
             Destroy(gameObject);

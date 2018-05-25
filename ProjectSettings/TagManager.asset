@@ -16,6 +16,7 @@ TagManager:
   - Objects
   - Explosion
   - Projectile
+  - KillPlain
   layers:
   - Default
   - TransparentFX

@@ -36,7 +36,7 @@ public class Gun : MonoBehaviour
 			GetComponent<AudioSource>().Play();
 
             Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
-            bulletInstance.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
+            bulletInstance.velocity = new Vector2(shootDirection.x, shootDirection.y).normalized * speed;
 
             //non mouse control
             // If the player is facing right...
