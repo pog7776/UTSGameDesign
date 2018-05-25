@@ -22,7 +22,7 @@ Esc:              Restart scene
 <br>
 
 <h1>To do:</h1>
-<hr>
+
 <h2>Fixes</h2>
 <ul>
   <li><s>Fix crouch (when coming out from platform)(and add down arrow)</s></li>
