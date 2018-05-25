@@ -223,6 +223,9 @@ MonoBehaviour:
   rocketLife: 2
   explosion: {fileID: 100000, guid: 42404bf7d14c342f69690c9961a7530d, type: 2}
   ExplosionTriggerProjectile: 0
+  shakeDuration: 1
+  shakeAmount: 1
+  heduken: 0
 --- !u!198 &198748112133939078
 ParticleSystem:
   m_ObjectHideFlags: 1

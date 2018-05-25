@@ -6,6 +6,9 @@ public class Rocket : MonoBehaviour
     public float rocketLife = 2;        //how long the rocket will survive before disappearing if not exploded
     public GameObject explosion;		// Prefab of explosion effect.
     public bool ExplosionTriggerProjectile = false;
+    public float shakeDuration = 1;
+    public float shakeAmount = 1;
+    public bool heduken;                //trigger to make projectiles weird
 
 
     void Start()
@@ -22,6 +25,12 @@ public class Rocket : MonoBehaviour
 
         // Instantiate the explosion where the rocket is with the random rotation.
         Instantiate(explosion, transform.position, randomRotation);
+
+        if (heduken == true)
+        {
+            //make camera "shake". It doensn't, it just makes projectiles really weird
+            CameraShake.Shake(shakeDuration, shakeAmount);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
