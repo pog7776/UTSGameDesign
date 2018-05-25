@@ -51,19 +51,16 @@ public class Rocket : MonoBehaviour
             Destroy(gameObject);
         }
         // Otherwise if the player manages to shoot himself...
-        else if (col.gameObject.tag != "Player" || col.gameObject.tag != "Explosion")
+        else if (col.gameObject.tag == "Player")            //dont collide with explosion add this     || col.gameObject.tag != "Explosion"
         {
             // Instantiate the explosion and destroy the rocket.
+            //OnExplode();
+            //Destroy(gameObject);
+        }
+        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Object")
+        {
             OnExplode();
             Destroy(gameObject);
-        }
-    }
-
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Explosion" && ExplosionTriggerProjectile == false)
-        {
-            Physics.IgnoreCollision(explosion.GetComponent<Collider>(), GetComponent<Collider>());
         }
     }
 }

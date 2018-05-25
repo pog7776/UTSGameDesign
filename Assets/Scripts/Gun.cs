@@ -21,8 +21,12 @@ public class Gun : MonoBehaviour
 	void Update ()
 	{
 
-        //was for mouse directional shooting
-        //Vector2 cursorInWorldPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //...setting shoot direction
+        Vector3 shootDirection;
+        shootDirection = Input.mousePosition;
+        shootDirection.z = 0.0f;
+        shootDirection = Camera.main.ScreenToWorldPoint(shootDirection);
+        shootDirection = shootDirection - transform.position;
 
         // If the fire button is pressed...
         if (Input.GetButtonDown("Fire1"))
@@ -31,19 +35,23 @@ public class Gun : MonoBehaviour
 			anim.SetTrigger("Shoot");
 			GetComponent<AudioSource>().Play();
 
-			// If the player is facing right...
-			if(playerCtrl.facingRight)
-			{
+            Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0, 0, 0))) as Rigidbody2D;
+            bulletInstance.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
+
+            //non mouse control
+            // If the player is facing right...
+            //if (playerCtrl.facingRight)
+			//{
 				// ... instantiate the rocket facing right and set it's velocity to the right. 
-				Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
-				bulletInstance.velocity = new Vector2(speed, 0);
-			}
-			else
-			{
+				//Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0,0,0))) as Rigidbody2D;
+				//bulletInstance.velocity = new Vector2(shootDirection.x * speed, shootDirection.y * speed);
+			//}
+			//else
+			//{
 				// Otherwise instantiate the rocket facing left and set it's velocity to the left.
-				Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0,0,180f))) as Rigidbody2D;
-				bulletInstance.velocity = new Vector2(-speed, 0);
-			}
+				//Rigidbody2D bulletInstance = Instantiate(rocket, transform.position, Quaternion.Euler(new Vector3(0,0,180f))) as Rigidbody2D;
+				//bulletInstance.velocity = new Vector2(-speed, 0);
+			//}
 		}
 	}
 }

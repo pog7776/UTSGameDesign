@@ -25,6 +25,7 @@ public class PlayerControl : MonoBehaviour
     public float crouchJump = 350;
     public float crouchSpeed = 0.5f;
 
+    private Transform player;
     public Transform ceilingCheck;
     public Transform wallCheck;
     public Transform wallCheckCrouch;
