@@ -22,7 +22,8 @@ Esc:              Restart scene
 <br>
 
 <h1>To do:</h1>
-<h2Fixes</h2>
+<hr>
+<h2>Fixes</h2>
 <ul>
   <li><s>Fix crouch (when coming out from platform)(and add down arrow)</s></li>
    
@@ -54,13 +55,11 @@ Esc:              Restart scene
 <br>    
   <h2>Create</h2>
   <ul>
+    <li>Levles</li>
     <li>Additional player characters & mechanics</li>
     <li>Level Props</li>
     <li>UI</li>
     <li>Extra functions (quit, save, etc.)</li>
     <li>Camera shake when explosion</li>
-    <li></li>
   </ul>
-<br>
-
-<b>Design levels and build</b>
+<hr>
