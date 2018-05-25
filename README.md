@@ -55,7 +55,7 @@ Esc:              Restart scene
 <br>    
   <h2>Create</h2>
   <ul>
-    <li>Levles</li>
+    <li>Levels</li>
     <li>Additional player characters & mechanics</li>
     <li>Level Props</li>
     <li>UI</li>
