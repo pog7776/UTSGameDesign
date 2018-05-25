@@ -21,35 +21,45 @@ Esc:              Restart scene
 <hr>
 <br>
 
-<b>To do:</b>
+<h1>To do:</h1>
+<h2Fixes</h2
 <ul>
   <li><s>Fix crouch (when coming out from platform)(and add down arrow)</s></li>
    
-  <li>Stop player from sinking into walls</li>
+  <li><s> player from sinking into walls</s></li>
   
-  <li>Fix collision detection from pushing character under platform at around head hight</li>
+  <li><s>Fix collision detection from pushing character under platform at around head hight</s></li>
   
   <li><s>Fix issue with character sprites being pixely when built and run from exe</s> Turns out this happened beacuse graphics settings were set to "Fastest" (anything above fastest will be fine, or can edit project settings to stop this)</li>
+  
+  <li>Fix Enemy animations</li>
+  
+  <li>Fix tile map? Sprites not showing in tile map (optional if we want to use it</li>
+  
+  <li>Fix explosion so it slightly damages player</li>
 </ul>
   
 <br>
-  <b>New Sprites for:</b>
+  <h2>New Sprites for:</h2>
   <ul>
-    <li>"Hero" (player)</li>
+    <li>"Hero" (player)... <b>Keep the same?</b></li>
     <li>Additional player characters</li>
     <li>Enemies</li>
     <li>Platforms</li>
     <li>Background</li>
     <li>Level Props</li>
+    <li>More impressive explosions</li>
   </ul>
     
 <br>    
-  <b>Create</b>
+  <h2>Create</h2>
   <ul>
     <li>Additional player characters & mechanics</li>
     <li>Level Props</li>
     <li>UI</li>
     <li>Extra functions (quit, save, etc.)</li>
+    <li>Camera shake when explosion</li>
+    <li></li>
   </ul>
 <br>
 
