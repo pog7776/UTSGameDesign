@@ -6,6 +6,9 @@ public class Rocket : MonoBehaviour
     public float rocketLife = 2;        //how long the rocket will survive before disappearing if not exploded
     public GameObject explosion;		// Prefab of explosion effect.
     public bool ExplosionTriggerProjectile = false;
+    public float shakeDuration = 1;
+    public float shakeAmount = 1;
+    public bool heduken;                //trigger to make projectiles weird
 
 
     void Start()
@@ -22,6 +25,12 @@ public class Rocket : MonoBehaviour
 
         // Instantiate the explosion where the rocket is with the random rotation.
         Instantiate(explosion, transform.position, randomRotation);
+
+        if (heduken == true)
+        {
+            //make camera "shake". It doensn't, it just makes projectiles really weird
+            CameraShake.Shake(shakeDuration, shakeAmount);
+        }
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -51,19 +60,22 @@ public class Rocket : MonoBehaviour
             Destroy(gameObject);
         }
         // Otherwise if the player manages to shoot himself...
-        else if (col.gameObject.tag != "Player" || col.gameObject.tag != "Explosion")
+        else if (col.gameObject.tag == "Player")
         {
-            // Instantiate the explosion and destroy the rocket.
+            //Put stuff here
+        }
+        //Rocket collide with explosion
+        else if (col.gameObject.tag != "Explosion" && ExplosionTriggerProjectile == true)
+        {
             OnExplode();
             Destroy(gameObject);
         }
-    }
 
-    void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.tag == "Explosion" && ExplosionTriggerProjectile == false)
+        //collide with wall, ground and objects
+        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Object" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain")
         {
-            Physics.IgnoreCollision(explosion.GetComponent<Collider>(), GetComponent<Collider>());
+            OnExplode();
+            Destroy(gameObject);
         }
     }
 }

@@ -6,7 +6,6 @@ public class ColliderControl : MonoBehaviour {
 
     public BoxCollider2D stand;
     public BoxCollider2D crouch;
-    public BoxCollider2D faceSpace;
     public CircleCollider2D circle;
 
     private Animator anim;
@@ -17,7 +16,6 @@ public class ColliderControl : MonoBehaviour {
         playerC = GetComponent<PlayerControl>();
         stand.enabled = true;
         crouch.enabled = true;
-        faceSpace.enabled = true;
         circle.enabled = true;
 
 	}
@@ -28,7 +26,6 @@ public class ColliderControl : MonoBehaviour {
         if (playerC.grounded == false)
         {
             stand.enabled = true;
-            faceSpace.enabled = true;
             crouch.enabled = false;
             circle.enabled = false;
 
@@ -38,14 +35,12 @@ public class ColliderControl : MonoBehaviour {
             if (playerC.crouching == true)
             {
                 stand.enabled = false;
-                faceSpace.enabled = false;
                 crouch.enabled = true;
                 circle.enabled = true;
             }
             else
             {
                 stand.enabled = true;
-                faceSpace.enabled = true;
                 crouch.enabled = false;
                 circle.enabled = true;
             }
