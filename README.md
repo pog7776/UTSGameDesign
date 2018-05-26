@@ -35,7 +35,7 @@ Esc:              Restart scene
   
   <li>Fix Enemy animations</li>
   
-  <li>Fix tile map? Sprites not showing in tile map (optional if we want to use it</li>
+  <li>Fix tile map? Sprites not showing in tile map (optional if we want to use it)</li>
   
   <li>Fix explosion so it slightly damages player</li>
 </ul>
