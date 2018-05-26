@@ -60,7 +60,7 @@ public class Rocket : MonoBehaviour
             Destroy(gameObject);
         }
         // Otherwise if the player manages to shoot himself...
-        else if (col.gameObject.tag == "Player")
+        else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door")
         {
             //Put stuff here
         }
@@ -72,7 +72,7 @@ public class Rocket : MonoBehaviour
         }
 
         //collide with wall, ground and objects
-        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Object" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain")
+        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Objects" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain")
         {
             OnExplode();
             Destroy(gameObject);
