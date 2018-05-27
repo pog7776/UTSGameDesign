@@ -18,6 +18,7 @@ TagManager:
   - Projectile
   - KillPlain
   - Door
+  - UI
   layers:
   - Default
   - TransparentFX
