@@ -14,17 +14,22 @@ public class WallDetection : MonoBehaviour
     public bool facingRight = true;
     public float h;
 
-    private Transform player;       // Reference to the player.
+    public Transform player;       // Reference to the player.
+    private GameObject[] transforms;
 
 
     void Awake()
     {
         // Setting up the reference.
-        player = GameObject.FindGameObjectWithTag("Player").transform;
+        transforms = GameObject.FindGameObjectsWithTag("Player");
     }
 
     void Update()
     {
+       // for(int i =0;i < transforms.Length; i++)
+       // {
+       //     print(transforms[i].tag + transforms[i].transform.position + transforms[i].transform.name);
+       // }
 
         //Check if ceiling is above player
         ceiled = Physics2D.Linecast(player.position, ceilingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
