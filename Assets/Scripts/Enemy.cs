@@ -1,5 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
+using System.Timers;
 
 public class Enemy : MonoBehaviour
 {
@@ -23,7 +25,7 @@ public class Enemy : MonoBehaviour
     public bool isHittingPlayer = false;
     public EnemyBehaviour enemyBehaviour = EnemyBehaviour.Patrol;
     public bool isGrounded;
-
+    public bool searching = false;
     private SpriteRenderer ren;         // Reference to the sprite renderer.
     private Transform frontCheck;       // Reference to the position of the gameobject used for checking if something is in front.
     private bool dead = false;          // Whether or not the enemy is dead.
@@ -34,7 +36,8 @@ public class Enemy : MonoBehaviour
     Rigidbody2D myRigidbody;
     Transform myTransform;
     float width;
-
+    public Transform playerTransform;
+    System.Timers.Timer aTimer = new System.Timers.Timer();
 
     private void Start()
     {
@@ -63,22 +66,8 @@ public class Enemy : MonoBehaviour
             //anim.SetTrigger("Dead");
         }
 
-        Vector2 linecast = myTransform.position + myTransform.right * width;
-        if ((int)myTransform.eulerAngles.y == 0)
-        {
-            // Debug.DrawLine(linecast, linecast + Vector2.right);
-            isHittingWall = Physics2D.Linecast(linecast, linecast + Vector2.right, enemyMask);
-            isHittingPlayer = Physics2D.Linecast(linecast, linecast + Vector2.right * 2, playerMask);
-        }
-        else
-        {
-            // Debug.DrawLine(linecast, linecast + Vector2.left);
-            isHittingWall = Physics2D.Linecast(linecast, linecast + Vector2.left, enemyMask);
-            isHittingPlayer = Physics2D.Linecast(linecast, linecast + Vector2.left * 2, playerMask);
 
-        }
-
-        if (isHittingPlayer)
+        if(DetectPlayer(new Vector2(myTransform.localPosition.x, myTransform.localPosition.y), 3))
         {
             enemyBehaviour = EnemyBehaviour.Attack;
         }
@@ -86,6 +75,32 @@ public class Enemy : MonoBehaviour
         {
             enemyBehaviour = EnemyBehaviour.Patrol;
         }
+
+        Vector2 linecast = myTransform.position + myTransform.right * width;
+        if ((int)myTransform.eulerAngles.y == 0)
+        {
+            // Debug.DrawLine(linecast, linecast + Vector2.right);
+            isHittingWall = Physics2D.Linecast(linecast, linecast + Vector2.right, enemyMask);
+            //isHittingPlayer = Physics2D.Linecast(linecast, linecast + Vector2.right * 2, playerMask);
+        }
+        else
+        {
+            // Debug.DrawLine(linecast, linecast + Vector2.left);
+            isHittingWall = Physics2D.Linecast(linecast, linecast + Vector2.left, enemyMask);
+            //isHittingPlayer = Physics2D.Linecast(linecast, linecast + Vector2.left * 2, playerMask);
+
+        }
+
+        //if (isHittingPlayer)
+        //{
+        //    enemyBehaviour = EnemyBehaviour.Attack;
+        //}
+        //
+        //else
+        //{
+        //    enemyBehaviour = EnemyBehaviour.Patrol;
+        //   // StartCoroutine(ChangePatrol());
+        //}
 
         //Todo - move this terrible code into fucntions
         //and use a switch statement for the behaviour
@@ -98,15 +113,15 @@ public class Enemy : MonoBehaviour
 
             if (!isGrounded || isHittingWall)
             {
-                Vector3 currentRotation = myTransform.eulerAngles;
-                currentRotation.y += 180;
-                myTransform.eulerAngles = currentRotation;
+                
+                Flip();
             }
 
             Vector2 myVelocity = myRigidbody.velocity;
-            myVelocity.x = myTransform.right.x * moveSpeed;
+            myVelocity.x = myTransform.right.x * moveSpeed ;
             myRigidbody.velocity = myVelocity;
         }
+
         if (enemyBehaviour == EnemyBehaviour.Attack)
         {
             bool isGrounded = Physics2D.Linecast(linecast, linecast + Vector2.down, enemyMask);
@@ -122,12 +137,14 @@ public class Enemy : MonoBehaviour
                 moveSpeed = 2f;
             }
 
-            Vector2 myVelocity = myRigidbody.velocity;
-            myVelocity.x = myTransform.right.x * moveSpeed;
-            myRigidbody.velocity = myVelocity;
+            //Vector2 myVelocity = myRigidbody.velocity;
+            //myVelocity.x = myTransform.right.x * moveSpeed;
+            //myRigidbody.velocity = myVelocity;
+            myTransform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
         }
 
     }
+
 
     public void Hurt()
     {
@@ -157,7 +174,7 @@ public class Enemy : MonoBehaviour
         dead = true;
 
         // Allow the enemy to rotate and spin it by adding a torque.
-        GetComponent<Rigidbody2D>().AddTorque(Random.Range(deathSpinMin, deathSpinMax));
+        GetComponent<Rigidbody2D>().AddTorque(UnityEngine.Random.Range(deathSpinMin, deathSpinMax));
 
         // Find all of the colliders on the gameobject and set them all to be triggers.
         Collider2D[] cols = GetComponents<Collider2D>();
@@ -167,7 +184,7 @@ public class Enemy : MonoBehaviour
         }
 
         // Play a random audioclip from the deathClips array.
-        int i = Random.Range(0, deathClips.Length);
+        int i = UnityEngine.Random.Range(0, deathClips.Length);
         AudioSource.PlayClipAtPoint(deathClips[i], transform.position);
 
         // Create a vector that is just above the enemy.
@@ -179,12 +196,33 @@ public class Enemy : MonoBehaviour
         Instantiate(hundredPointsUI, scorePos, Quaternion.identity);
     }
 
+    private bool DetectPlayer(Vector2 centre, float radius)
+    {
+        Collider2D collider = Physics2D.OverlapCircle(centre, radius, playerMask);
+        if(collider != null)
+        {
+            if (collider.CompareTag("Player"))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+
+        }
+        else
+        {
+            return false;
+        }
+
+    }
 
     public void Flip()
     {
         // Multiply the x component of localScale by -1.
-        Vector3 enemyScale = transform.localScale;
-        enemyScale.x *= -1;
-        transform.localScale = enemyScale;
+        Vector3 currentRotation = myTransform.eulerAngles;
+        currentRotation.y += 180;
+        myTransform.eulerAngles = currentRotation;
     }
 }

@@ -17,6 +17,8 @@ TagManager:
   - Explosion
   - Projectile
   - KillPlain
+  - Door
+  - UI
   layers:
   - Default
   - TransparentFX
