@@ -47,6 +47,7 @@ public class WallDetection : MonoBehaviour
             if (facingRight)
             {
                 transform.position = player.position + standing;
+                Debug.Log("aaaaaaaaaaaaaaaaaa");
             }
             else
             {
