@@ -59,7 +59,19 @@ Esc:              Pause
   <ul>
     <li>Levels</li>
     <li>Additional player characters & mechanics</li>
+      <ul>
+        <li>All 5 different characters and their mechanics</li>
+        <hr>
+        <li><s>Health pickups</s></li>
+        <li><s>Points (collectables)</s></li>
+      </ul>
     <li>Level Props</li>
+      <ul>
+        <li>Physics objects</li>
+          <ul>
+            <li>Box</li>
+          </ul>
+      </ul>
     <li><s>UI</s></li>
     <li><s>Extra functions (quit, save, etc.)</s></li>
     <li><s>Camera shake when explosion</s></li>
