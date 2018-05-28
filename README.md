@@ -68,7 +68,7 @@ Esc:              Pause
       <ul>
         <li>Physics objects</li>
           <ul>
-            <li>Box</li>
+            <li><s>Box</s></li>
           </ul>
       </ul>
     <li><s>UI</s></li>
