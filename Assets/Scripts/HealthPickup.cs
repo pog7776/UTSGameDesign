@@ -2,28 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Collectable : MonoBehaviour {
+public class HealthPickup : MonoBehaviour {
 
-    public static int score = 0;
-
+    public float healAmount;
+    public static float newHealth = 0;
+    public bool heal;
 
     // Use this for initialization
-    void Start () {
-        score = Score.score;
+    void Start()
+    {
+        newHealth = PlayerHealth.visibleHealth;
     }
 
     // Update is called once per frame
-    void Update () {
+    void Update()
+    {
 
-	}
+    }
 
     void OnTriggerEnter2D(Collider2D col)
     {
         if (col.gameObject.tag == "Player")
         {
-            score++;
+            newHealth = PlayerHealth.visibleHealth + healAmount;
             gameObject.SetActive(false);
+            heal = true;
         }
-
     }
 }
