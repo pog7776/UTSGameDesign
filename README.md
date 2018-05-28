@@ -73,6 +73,12 @@ Esc:              Pause
       </ul>
     <li><s>UI</s></li>
     <li><s>Extra functions (quit, save, etc.)</s></li>
+      <ul>
+        <li><s>Play</s></li>
+        <li>Options</li>
+        <li><s>Quit</s></li>
+        <li>How to play</li>
+      </ul>
     <li><s>Camera shake when explosion</s></li>
   </ul>
 <hr>
