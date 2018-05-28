@@ -10,7 +10,7 @@ public class Collectable : MonoBehaviour {
     // Use this for initialization
     void Start () {
         score = Score.score;
-	}
+    }
 
     // Update is called once per frame
     void Update () {

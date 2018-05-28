@@ -205,8 +205,7 @@ MonoBehaviour:
   hedukenAmount: 1
   heduken: 0
   camShakeAmt: 0.1
-  camShakeLength: 0.2
-  mainCam: {fileID: 100000, guid: 64b12b15baf9644af9f0651e6705f0ef, type: 2}
+  camShakeLength: 0.1
 --- !u!114 &11400004
 MonoBehaviour:
   m_ObjectHideFlags: 1
