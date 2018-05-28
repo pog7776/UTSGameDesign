@@ -47,7 +47,7 @@ public class Rocket : MonoBehaviour
             // Destroy the rocket.
             Destroy(gameObject);
         }
-        // Otherwise if it hits a bomb crate...
+        // Otherwise if it hits a bomb crate...     need to remove this stuff
         else if (col.tag == "BombPickup")
         {
             // ... find the Bomb script and call the Explode function.
@@ -59,8 +59,8 @@ public class Rocket : MonoBehaviour
             // Destroy the rocket.
             Destroy(gameObject);
         }
-        // Otherwise if the player manages to shoot himself...
-        else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door")
+        // Objects to exclude
+        else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door" || col.gameObject.tag == "Collectable")
         {
             //Put stuff here
         }
@@ -71,7 +71,7 @@ public class Rocket : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //collide with wall, ground and objects
+        //Things to collide with
         else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Objects" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain")
         {
             OnExplode();

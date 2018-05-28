@@ -29,7 +29,7 @@ public class Enemy : MonoBehaviour
     private SpriteRenderer ren;         // Reference to the sprite renderer.
     private Transform frontCheck;       // Reference to the position of the gameobject used for checking if something is in front.
     private bool dead = false;          // Whether or not the enemy is dead.
-                                        //private Score score;				// Reference to the Score script.
+    //private Score score;				// Reference to the Score script.
 
     public LayerMask enemyMask;
     public LayerMask playerMask;

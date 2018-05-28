@@ -19,6 +19,7 @@ TagManager:
   - KillPlain
   - Door
   - UI
+  - Collectable
   layers:
   - Default
   - TransparentFX
