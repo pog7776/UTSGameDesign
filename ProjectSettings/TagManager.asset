@@ -20,6 +20,7 @@ TagManager:
   - Door
   - UI
   - Collectable
+  - Health
   layers:
   - Default
   - TransparentFX
