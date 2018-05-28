@@ -61,7 +61,6 @@ Esc:              Pause
     <li>Additional player characters & mechanics</li>
       <ul>
         <li>All 5 different characters and their mechanics</li>
-        <hr>
         <li><s>Health pickups</s></li>
         <li><s>Points (collectables)</s></li>
       </ul>
