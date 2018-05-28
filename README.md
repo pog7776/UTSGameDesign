@@ -16,7 +16,9 @@ Lmb / Ctrl:       Fire projectile
 
 Rmb:              Slash attack
 
-Esc:              Restart scene
+R:                Restart scene
+
+Esc:              Pause
 
 <hr>
 <br>
@@ -37,7 +39,7 @@ Esc:              Restart scene
   
   <li>Fix tile map? Sprites not showing in tile map (optional if we want to use it)</li>
   
-  <li>Fix explosion so it slightly damages player</li>
+  <li><s>Fix explosion so it slightly damages player</s></li>
 </ul>
   
 <br>
@@ -58,8 +60,8 @@ Esc:              Restart scene
     <li>Levels</li>
     <li>Additional player characters & mechanics</li>
     <li>Level Props</li>
-    <li>UI</li>
-    <li>Extra functions (quit, save, etc.)</li>
-    <li>Camera shake when explosion</li>
+    <li><s>UI</s></li>
+    <li><s>Extra functions (quit, save, etc.)</s></li>
+    <li><s>Camera shake when explosion</s></li>
   </ul>
 <hr>
