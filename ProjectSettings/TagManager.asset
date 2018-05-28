@@ -21,6 +21,7 @@ TagManager:
   - UI
   - Collectable
   - Health
+  - GM
   layers:
   - Default
   - TransparentFX
