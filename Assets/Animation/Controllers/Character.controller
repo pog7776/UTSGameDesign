@@ -262,9 +262,6 @@ AnimatorStateTransition:
   - m_ConditionMode: 1
     m_ConditionEvent: Crouch
     m_EventTreshold: 0
-  - m_ConditionMode: 4
-    m_ConditionEvent: Speed
-    m_EventTreshold: 0.75
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102319594811456866}
   m_Solo: 0
@@ -610,7 +607,7 @@ AnimatorStateTransition:
   m_DstStateMachine: {fileID: 0}
   m_DstState: {fileID: 1102512125591969228}
   m_Solo: 0
-  m_Mute: 0
+  m_Mute: 1
   m_IsExit: 0
   serializedVersion: 3
   m_TransitionDuration: 0

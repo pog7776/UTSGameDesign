@@ -1,39 +1,46 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
-public class CameraShake : MonoBehaviour
-{
+public class CameraShake : MonoBehaviour {
 
-    private Vector3 _originalPos;
-    public static CameraShake _instance;
+    public Camera mainCam;
 
-    void Awake()
+    private float shakeAmount = 0;
+
+    private void Awake()
     {
-        _originalPos = transform.localPosition;
-
-        _instance = this;
-    }
-
-    public static void Shake(float duration, float amount)
-    {
-        _instance.StopAllCoroutines();
-        _instance.StartCoroutine(_instance.cShake(duration, amount));
-    }
-
-    public IEnumerator cShake(float duration, float amount)
-    {
-        float endTime = Time.time + duration;
-
-        while (Time.time < endTime)
+        if(mainCam == null)
         {
-            transform.localPosition = _originalPos + Random.insideUnitSphere * amount;
-
-            duration -= Time.deltaTime;
-
-            yield return null;
+            mainCam = Camera.main;
         }
-
-        transform.localPosition = _originalPos;
     }
 
+    public void Shake( float amt, float length)
+    {
+        shakeAmount = amt;
+        InvokeRepeating("DoShake", 0, 0.01f);
+        Invoke("StopShake", length);
+    }
+
+    void DoShake()
+    {
+        if(shakeAmount > 0)
+        {
+            Vector3 camPos = mainCam.transform.position;
+
+            float offsetX = Random.value * shakeAmount * 2 - shakeAmount;
+            float offsetY = Random.value * shakeAmount * 2 - shakeAmount;
+            camPos.x += offsetX;
+            camPos.y += offsetY;
+
+            mainCam.transform.position = camPos;
+        }
+    }
+
+    void StopShake()
+    {
+        CancelInvoke("DoShake");
+        mainCam.transform.localPosition = Vector3.zero;
+    }
 }

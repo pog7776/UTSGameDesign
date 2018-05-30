@@ -6,15 +6,26 @@ public class Rocket : MonoBehaviour
     public float rocketLife = 2;        //how long the rocket will survive before disappearing if not exploded
     public GameObject explosion;		// Prefab of explosion effect.
     public bool ExplosionTriggerProjectile = false;
-    public float shakeDuration = 1;
-    public float shakeAmount = 1;
-    public bool heduken;                //trigger to make projectiles weird
+    public float hedukenLenght = 1;
+    public float hedukenAmount = 1;
+    public bool heduken = false;                //trigger to make projectiles weird
+
+    //handle camera shaking
+    public float camShakeAmt = 0.1f;
+    public float camShakeLength = 0.2f;
+    CameraShake camShake;
 
 
     void Start()
     {
         // Destroy the rocket after 2 seconds if it doesn't get destroyed before then.
         Destroy(gameObject, rocketLife);
+
+        camShake = GameMaster.gm.GetComponent<CameraShake>();
+        if(camShake == null)
+        {
+            Debug.LogError("No CameraShake found...");
+        }
     }
 
 
@@ -26,10 +37,13 @@ public class Rocket : MonoBehaviour
         // Instantiate the explosion where the rocket is with the random rotation.
         Instantiate(explosion, transform.position, randomRotation);
 
+        //camera shake
+        camShake.Shake(camShakeAmt, camShakeLength);
+
         if (heduken == true)
         {
-            //make camera "shake". It doensn't, it just makes projectiles really weird
-            CameraShake.Shake(shakeDuration, shakeAmount);
+            //IDK why this does this... dont turn it on unless you want crazy projectiles
+            Heduken.Shake(hedukenLenght, hedukenAmount);
         }
     }
 
@@ -47,7 +61,7 @@ public class Rocket : MonoBehaviour
             // Destroy the rocket.
             Destroy(gameObject);
         }
-        // Otherwise if it hits a bomb crate...
+        // Otherwise if it hits a bomb crate...     need to remove this stuff
         else if (col.tag == "BombPickup")
         {
             // ... find the Bomb script and call the Explode function.
@@ -59,8 +73,8 @@ public class Rocket : MonoBehaviour
             // Destroy the rocket.
             Destroy(gameObject);
         }
-        // Otherwise if the player manages to shoot himself...
-        else if (col.gameObject.tag == "Player")
+        // Objects to exclude
+        else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door" || col.gameObject.tag == "Collectable" || col.gameObject.tag == "Health")
         {
             //Put stuff here
         }
@@ -71,8 +85,8 @@ public class Rocket : MonoBehaviour
             Destroy(gameObject);
         }
 
-        //collide with wall, ground and objects
-        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Object" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain")
+        //Things to collide with
+        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Objects" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain")
         {
             OnExplode();
             Destroy(gameObject);

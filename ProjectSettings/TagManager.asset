@@ -17,6 +17,11 @@ TagManager:
   - Explosion
   - Projectile
   - KillPlain
+  - Door
+  - UI
+  - Collectable
+  - Health
+  - GM
   layers:
   - Default
   - TransparentFX
