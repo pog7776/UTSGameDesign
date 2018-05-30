@@ -5,7 +5,7 @@ public class Gun : MonoBehaviour
 {
 	public Rigidbody2D rocket;				// Prefab of the rocket.
 	public float speed = 20f;				// The speed the rocket will fire at.
-
+    public bool unPaused = true;            //make sure the game is unpaused
     
     private PlayerControl playerCtrl;		// Reference to the PlayerControl script.
 	private Animator anim;					// Reference to the Animator component.
@@ -18,7 +18,7 @@ public class Gun : MonoBehaviour
 	}
 
 
-	void Update ()
+    void Update ()
 	{
 
         //...setting shoot direction
@@ -29,7 +29,7 @@ public class Gun : MonoBehaviour
         shootDirection = shootDirection - transform.position;
 
         // If the fire button is pressed...
-        if (Input.GetButtonDown("Fire1"))
+        if (Input.GetButtonDown("Fire1") && PauseMenu.GameIsPaused == false)
 		{
 			// ... set the animator Shoot trigger parameter and play the audioclip.
 			anim.SetTrigger("Shoot");

@@ -23,10 +23,11 @@ public class Remover : MonoBehaviour
 
 			// ... instantiate the splash where the player falls in.
 			Instantiate(splash, col.transform.position, transform.rotation);
-			// ... destroy the player.
-			Destroy (col.gameObject);
-			// ... reload the level.
-			StartCoroutine("ReloadGame");
+            // ... destroy the player.
+            //Destroy (col.gameObject);
+            GameObject.FindGameObjectWithTag("Player").SetActive(false);
+            // ... reload the level.
+            StartCoroutine("ReloadGame");
 		}
 		else
 		{
