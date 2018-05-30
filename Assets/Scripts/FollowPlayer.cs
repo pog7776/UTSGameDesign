@@ -5,13 +5,14 @@ public class FollowPlayer : MonoBehaviour
 {
 	public Vector3 offset;			// The offset at which the Health Bar follows the player.
 	
-	private Transform player;		// Reference to the player.
+	//private Transform player;		// Reference to the player.
+    public Transform player;
 
 
 	void Awake ()
 	{
 		// Setting up the reference.
-		player = GameObject.FindGameObjectWithTag("Player").transform;
+		//player = GameObject.FindGameObjectWithTag("Player").transform;
 	}
 
 	void Update ()
