@@ -51,7 +51,7 @@ Esc:              Pause
     <li>Platforms</li>
     <li>Background</li>
     <li>Level Props</li>
-    <li>More impressive explosions</li>
+    <li><s>More impressive explosions</s></li>
   </ul>
     
 <br>    
@@ -76,8 +76,11 @@ Esc:              Pause
       <ul>
         <li><s>Play</s></li>
         <li>Options</li>
+          <ul>
+            <li>Need more</li>
+          </ul>
         <li><s>Quit</s></li>
-        <li>How to play</li>
+        <li><s>How to play</s></li>
       </ul>
     <li><s>Camera shake when explosion</s></li>
   </ul>
