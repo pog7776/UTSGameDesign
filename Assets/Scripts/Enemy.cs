@@ -39,8 +39,12 @@ public class Enemy : MonoBehaviour
     public Transform playerTransform;
     System.Timers.Timer aTimer = new System.Timers.Timer();
 
+    private bool playerSeen;
+    public Transform playerCheck;
+    public float attackSpeed = 2;
+
     public float timeToFlip = 2;
-    public float flipTimer = 0;
+    private float flipTimer = 0;
 
     private void Start()
     {
@@ -153,6 +157,26 @@ public class Enemy : MonoBehaviour
             myTransform.position = Vector2.MoveTowards(transform.position, playerTransform.position, moveSpeed * Time.deltaTime);
         }
 
+    }
+
+    private void Update()
+    {
+        playerSeen = Physics2D.Linecast(transform.position, playerCheck.position, 1 << LayerMask.NameToLayer("Player"));
+
+        if(playerSeen == true && isGrounded == true)
+        {
+            moveSpeed = attackSpeed;
+            enemyBehaviour = EnemyBehaviour.Attack;
+        }
+        else
+        {
+            moveSpeed = 1f;
+            enemyBehaviour = EnemyBehaviour.Patrol;
+        }
+        if(isGrounded == false)
+        {
+            moveSpeed = 0;
+        }
     }
 
 
