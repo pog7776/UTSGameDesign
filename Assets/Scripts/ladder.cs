@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ladder : MonoBehaviour
+public class Ladder : MonoBehaviour
 {
 
     public float speed = 2f;
