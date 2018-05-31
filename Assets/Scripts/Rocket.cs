@@ -74,7 +74,7 @@ public class Rocket : MonoBehaviour
             Destroy(gameObject);
         }
         // Objects to exclude
-        else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door" || col.gameObject.tag == "Collectable" || col.gameObject.tag == "Health")
+        else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door" || col.gameObject.tag == "Collectable" || col.gameObject.tag == "Health" || col.gameObject.tag == "Ladder")
         {
             //Put stuff here
         }
