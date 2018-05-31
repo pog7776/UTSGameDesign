@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
 
+    public int level;
+
     // Use this for initialization
     void Start()
     {
@@ -23,7 +25,32 @@ public class NextLevel : MonoBehaviour
         // If the player hits the trigger...
         if (col.gameObject.tag == "Player")
         {
-            SceneManager.LoadScene("Level99");
+
+            if (level == 0)
+            {
+                SceneManager.LoadScene("Menu");
+            }
+
+            if (level == 1)
+            {
+                SceneManager.LoadScene("level");
+            }
+
+            if (level == 2)
+            {
+                SceneManager.LoadScene("level99");
+            }
+
+            if (level == 3)
+            {
+                SceneManager.LoadScene("level3");
+            }
+
+            if (level == 4)
+            {
+                SceneManager.LoadScene("level4");
+            }
+
         }
 
     }
