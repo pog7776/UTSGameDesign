@@ -20,6 +20,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4474115371297700}
   - component: {fileID: 61239945049214238}
+  - component: {fileID: 114016471634325994}
   m_Layer: 0
   m_Name: Chain Long
   m_TagString: Ladder
@@ -36,7 +37,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4218732290286056}
   - component: {fileID: 212162200476039830}
-  - component: {fileID: 114978621096056418}
   m_Layer: 0
   m_Name: Chain
   m_TagString: Ladder
@@ -53,7 +53,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4290304599195828}
   - component: {fileID: 212357028831010878}
-  - component: {fileID: 114628867432696904}
   m_Layer: 0
   m_Name: Chain (2)
   m_TagString: Ladder
@@ -127,28 +126,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.37817097, y: 12.581526}
   m_EdgeRadius: 0
---- !u!114 &114628867432696904
+--- !u!114 &114016471634325994
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1456121037579866}
+  m_GameObject: {fileID: 1059860973483478}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: febf5ab5fc5c90d408ad68a7374fcbaf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &114978621096056418
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1291629056619872}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: febf5ab5fc5c90d408ad68a7374fcbaf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  speed: 2
 --- !u!212 &212162200476039830
 SpriteRenderer:
   m_ObjectHideFlags: 1

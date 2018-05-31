@@ -32,11 +32,12 @@ public class Spikes : MonoBehaviour
 		else
 		{
 
-            if (col.gameObject.tag != "Bullet" || col.gameObject.tag != "Objects")
+            if (col.gameObject.tag == "Bullet" || col.gameObject.tag == "Objects")
             {
 
             }
-            else
+
+            if(col.gameObject.tag == "Enemy")
             {
                 // ... instantiate the splash where the enemy falls in.
                 Instantiate(splash, col.transform.position, transform.rotation);
