@@ -83,5 +83,7 @@ Esc:              Pause
         <li><s>How to play</s></li>
       </ul>
     <li><s>Camera shake when explosion</s></li>
+  <li>Flesh out enemies</li>
+  <li>Add more enemies</li>
   </ul>
 <hr>
