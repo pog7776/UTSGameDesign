@@ -22,6 +22,7 @@ TagManager:
   - Collectable
   - Health
   - GM
+  - Ladder
   layers:
   - Default
   - TransparentFX
@@ -40,7 +41,7 @@ TagManager:
   - Projectile
   - Explosion
   - Wall
-  - 
+  - Ladder
   - 
   - 
   - 

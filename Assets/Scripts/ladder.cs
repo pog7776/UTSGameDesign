@@ -31,6 +31,10 @@ public class ladder : MonoBehaviour
             {
                 collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
             }
+            else if(Input.GetKey(KeyCode.Space))
+            {
+                collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 10f));
+            }
             else
             {
                 collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0.60f);
