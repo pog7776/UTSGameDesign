@@ -5,7 +5,9 @@ using UnityEngine;
 public class Ladder : MonoBehaviour
 {
 
+    private Animator anim;					// Reference to the player's animator component.
     public float speed = 2f;
+    private bool climbing;
 
     // Use this for initialization
     void Start()
@@ -16,7 +18,14 @@ public class Ladder : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        if(climbing == true)
+        {
+            //anim.SetBool("Climbing", true);
+        }
+        else
+        {
+            //anim.SetBool("Climbing", false);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
@@ -31,7 +40,7 @@ public class Ladder : MonoBehaviour
             {
                 collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
             }
-            else if(Input.GetKey(KeyCode.Space))
+            else if (Input.GetKey(KeyCode.Space))
             {
                 collision.GetComponent<Rigidbody2D>().AddForce(new Vector2(0f, 10f));
             }
@@ -39,8 +48,14 @@ public class Ladder : MonoBehaviour
             {
                 collision.GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0.60f);
             }
-        }
 
+            climbing = true;
+
+        }
+        else
+        {
+            climbing = false;
+        }
 
 
     }
