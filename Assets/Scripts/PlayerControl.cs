@@ -3,7 +3,7 @@ using System.Collections;
 
 public class PlayerControl : MonoBehaviour
 {
-	[HideInInspector]
+	//[HideInInspector]
 	public bool facingRight = true;			// For determining which way the player is currently facing.
 	[HideInInspector]
 	public bool jump = false;				// Condition for whether the player should jump.
@@ -40,6 +40,7 @@ public class PlayerControl : MonoBehaviour
     private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	public bool grounded = false;			// Whether or not the player is grounded.
+    public bool climbing;
 	private Animator anim;					// Reference to the player's animator component.
     private Rigidbody rb;
     private GameObject gameObject;
@@ -70,6 +71,9 @@ public class PlayerControl : MonoBehaviour
         wall = Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         //wallCrouch = Physics2D.Linecast(transform.position, wallCheckCrouch.position, 1 << LayerMask.NameToLayer("Ground"));
 
+        //Check if player on a ladder
+        climbing = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ladder"));
+
         if (grounded)
         {
             anim.SetBool("OnGround", true);
@@ -80,7 +84,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         // If the jump button is pressed and the player is grounded then the player should jump.
-        if (Input.GetButtonDown("Jump") && grounded)
+        if (Input.GetButtonDown("Jump") && grounded && climbing != true)
         {
             jump = true;
                 //flag for animator
@@ -103,6 +107,15 @@ public class PlayerControl : MonoBehaviour
         {
             crouching = false;
             anim.SetBool("Crouch", false);
+        }
+
+        if (climbing)
+        {
+            anim.SetBool("Climbing", true);
+        }
+        else
+        {
+            anim.SetBool("Climbing", false);
         }
     }
 
