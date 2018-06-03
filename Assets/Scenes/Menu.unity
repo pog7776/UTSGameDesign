@@ -499,6 +499,16 @@ Prefab:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 212752926062310696, guid: 6aa187bc6339843479c03fdfd71404a3,
+        type: 2}
+      propertyPath: m_SortingLayerID
+      value: 149272721
+      objectReference: {fileID: 0}
+    - target: {fileID: 212752926062310696, guid: 6aa187bc6339843479c03fdfd71404a3,
+        type: 2}
+      propertyPath: m_SortingLayer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
   m_IsPrefabParent: 0
@@ -642,6 +652,10 @@ Prefab:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 42404bf7d14c342f69690c9961a7530d, type: 2}
+      propertyPath: m_Layer
+      value: 5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 42404bf7d14c342f69690c9961a7530d, type: 2}
   m_IsPrefabParent: 0
@@ -747,7 +761,7 @@ GameObject:
   m_Component:
   - component: {fileID: 647132227}
   - component: {fileID: 647132228}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Bullet_pellet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -799,8 +813,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 149272721
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5f0164c401016794fb0aefbd4f07b31e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -909,9 +923,9 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 683434456}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: Char Sprites
-  m_TagString: Untagged
+  m_TagString: UI
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -950,7 +964,7 @@ GameObject:
   m_Component:
   - component: {fileID: 692114383}
   - component: {fileID: 692114384}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PixelCharAnim_Plain_jump_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1002,8 +1016,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 149272721
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: caa993aa5281149c899cae9fed1c29e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1316,7 +1330,7 @@ GameObject:
   m_Component:
   - component: {fileID: 906275744}
   - component: {fileID: 906275745}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PixelCharAnim_Plain_run_4
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1368,8 +1382,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 149272721
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300008, guid: 0f2d2fc945b994104986012e439f5bf6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -1961,7 +1975,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1246404406}
   - component: {fileID: 1246404407}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PixelCharAnim_Plain_crouchWalk_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -2013,8 +2027,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 149272721
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 9904c1a15e3714fb3bb3a215c229905f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2131,7 +2145,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1275309320
 RectTransform:
   m_ObjectHideFlags: 0
@@ -2600,7 +2614,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1594589150
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3053,7 +3067,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1881131134}
   - component: {fileID: 1881131135}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PixelCharAnim_Plain_jump_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3105,8 +3119,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1024582385
+  m_SortingLayer: 4
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300002, guid: caa993aa5281149c899cae9fed1c29e6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3241,7 +3255,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1906161285}
   - component: {fileID: 1906161286}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: PixelCharAnim_Gun_run_0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3293,8 +3307,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 149272721
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7a3a8fb368a33438db2e2067a340a832, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
