@@ -45,6 +45,10 @@ public class PlayerControl : MonoBehaviour
     private GameObject gameObject;
 
 
+    /*
+     * 
+     * All this is used for laadder climbing
+     */
     public bool isOnLadder = false;
     public bool isClimbing = false;
     public bool canMove = true;
@@ -76,6 +80,7 @@ public class PlayerControl : MonoBehaviour
         //wallCrouch = Physics2D.Linecast(transform.position, wallCheckCrouch.position, 1 << LayerMask.NameToLayer("Ground"));
 
 
+        //Check to make sure we are on the ladder and we are pressing W before allowing climbing and disableing movement
         if(isOnLadder == true && Input.GetKeyDown(KeyCode.W))
         {
             isClimbing = true;
@@ -133,6 +138,12 @@ public class PlayerControl : MonoBehaviour
 	void FixedUpdate ()
 	{
 
+        /*
+         * 
+         * First we check if player is climbing
+         * We make sure we have disabled movement before we set isClimbing flag to be true
+         * Allow controls to occurs from here instead until the player presses space or grounds themselves
+         */
         if(isClimbing)
         {
             if (Input.GetKey(KeyCode.W))
@@ -212,6 +223,7 @@ public class PlayerControl : MonoBehaviour
         //	// ... set the player's velocity to the maxSpeed in the x axis.
         //	GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
+   
         if (canMove)
         {
             transform.Translate(playerSpeed, 0, 0);
@@ -248,7 +260,10 @@ public class PlayerControl : MonoBehaviour
 		}
 	}
 
-
+    /// <summary>
+    /// Check to see if we are intersecting with ladder
+    /// </summary>
+    /// <param name="other"></param>
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.CompareTag("Ladder"))
@@ -257,6 +272,11 @@ public class PlayerControl : MonoBehaviour
         }
 
     }
+
+    /// <summary>
+    /// When we exit we reset isOnLadder
+    /// </summary>
+    /// <param name="collision"></param>
     private void OnTriggerExit2D(Collider2D collision)
     {
         isOnLadder = false;
