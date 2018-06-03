@@ -81,7 +81,7 @@ public class PlayerControl : MonoBehaviour
 
 
         //Check to make sure we are on the ladder and we are pressing W before allowing climbing and disableing movement
-        if(isOnLadder == true && Input.GetKeyDown(KeyCode.W))
+        if(isOnLadder == true && Input.GetKey(KeyCode.W))
         {
             isClimbing = true;
             canMove = false;
