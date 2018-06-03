@@ -40,13 +40,22 @@ public class PlayerControl : MonoBehaviour
     private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
 	private Transform groundCheck;			// A position marking where to check if the player is grounded.
 	public bool grounded = false;			// Whether or not the player is grounded.
-    public bool climbing;
 	private Animator anim;					// Reference to the player's animator component.
     private Rigidbody rb;
     private GameObject gameObject;
 
 
-	void Awake()
+    /*
+     * 
+     * All this is used for laadder climbing
+     */
+    public bool isOnLadder = false;
+    public bool isClimbing = false;
+    public bool canMove = true;
+    public float speed = 2f;
+
+
+    void Awake()
 	{
 		// Setting up references.
 		groundCheck = transform.Find("groundCheck");
@@ -58,11 +67,10 @@ public class PlayerControl : MonoBehaviour
 
 	void Update()
 	{
-		// The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
-		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground")) 
-            || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Enemies")) 
-            || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Objects")) 
-            || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ladder"));
+        // The player is grounded if a linecast to the groundcheck position hits anything on the ground layer.
+        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"))
+            || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Enemies"))
+            || Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Objects"));
 
         //Check if ceiling is above player
         ceiled = Physics2D.Linecast(transform.position, ceilingCheck.position, 1 << LayerMask.NameToLayer("Ground"));
@@ -71,8 +79,15 @@ public class PlayerControl : MonoBehaviour
         wall = Physics2D.Linecast(transform.position, wallCheck.position, 1 << LayerMask.NameToLayer("Ground"));
         //wallCrouch = Physics2D.Linecast(transform.position, wallCheckCrouch.position, 1 << LayerMask.NameToLayer("Ground"));
 
-        //Check if player on a ladder
-        climbing = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ladder"));
+
+        //Check to make sure we are on the ladder and we are pressing W before allowing climbing and disableing movement
+        if(isOnLadder == true && Input.GetKeyDown(KeyCode.W))
+        {
+            isClimbing = true;
+            canMove = false;
+        }
+
+
 
         if (grounded)
         {
@@ -84,7 +99,7 @@ public class PlayerControl : MonoBehaviour
         }
 
         // If the jump button is pressed and the player is grounded then the player should jump.
-        if (Input.GetButtonDown("Jump") && grounded && climbing != true)
+        if (Input.GetButtonDown("Jump") && grounded)
         {
             jump = true;
                 //flag for animator
@@ -109,7 +124,7 @@ public class PlayerControl : MonoBehaviour
             anim.SetBool("Crouch", false);
         }
 
-        if (climbing)
+        if (isClimbing)
         {
             anim.SetBool("Climbing", true);
         }
@@ -122,6 +137,34 @@ public class PlayerControl : MonoBehaviour
 
 	void FixedUpdate ()
 	{
+
+        /*
+         * 
+         * First we check if player is climbing
+         * We make sure we have disabled movement before we set isClimbing flag to be true
+         * Allow controls to occurs from here instead until the player presses space or grounds themselves
+         */
+        if(isClimbing)
+        {
+            if (Input.GetKey(KeyCode.W))
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, speed);
+            }
+            else if (Input.GetKey(KeyCode.S))
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
+            }
+            else if (Input.GetKey(KeyCode.Space) || grounded)
+            {
+                isClimbing = false;
+                jump = true;
+            }
+            else
+            {
+                GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0.60f);
+            }
+
+        }
 
         // Cache the horizontal input.
         h = Input.GetAxis("Horizontal");
@@ -180,7 +223,12 @@ public class PlayerControl : MonoBehaviour
         //	// ... set the player's velocity to the maxSpeed in the x axis.
         //	GetComponent<Rigidbody2D>().velocity = new Vector2(Mathf.Sign(GetComponent<Rigidbody2D>().velocity.x) * maxSpeed, GetComponent<Rigidbody2D>().velocity.y);
 
-        transform.Translate(playerSpeed, 0, 0);
+   
+        if (canMove)
+        {
+            transform.Translate(playerSpeed, 0, 0);
+        }
+        
 
 
         // If the input is moving the player right and the player is facing left...
@@ -197,6 +245,8 @@ public class PlayerControl : MonoBehaviour
 		{
 			// Set the Jump animator trigger parameter.
 			anim.SetTrigger("Jump");
+            canMove = true;
+            isClimbing = false;
 
 			// Play a random jump audio clip.
 			int i = Random.Range(0, jumpClips.Length);
@@ -209,9 +259,31 @@ public class PlayerControl : MonoBehaviour
 			jump = false;
 		}
 	}
-	
-	
-	void Flip ()
+
+    /// <summary>
+    /// Check to see if we are intersecting with ladder
+    /// </summary>
+    /// <param name="other"></param>
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (other.CompareTag("Ladder"))
+        {
+            isOnLadder = true;
+        }
+
+    }
+
+    /// <summary>
+    /// When we exit we reset isOnLadder
+    /// </summary>
+    /// <param name="collision"></param>
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        isOnLadder = false;
+    }
+
+
+    void Flip ()
 	{
 		// Switch the way the player is labelled as facing.
 		facingRight = !facingRight;
