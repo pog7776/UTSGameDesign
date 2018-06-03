@@ -13,9 +13,9 @@ public class PlayerControl : MonoBehaviour
 	public float maxSpeed = 5f;				// The fastest the player can travel in the x axis.
 	public AudioClip[] jumpClips;			// Array of clips for when the player jumps.
 	public float jumpForce = 1000f;			// Amount of force added when the player jumps.
-	public AudioClip[] taunts;				// Array of clips for when the player taunts.
-	public float tauntProbability = 50f;	// Chance of a taunt happening.
-	public float tauntDelay = 1f;			// Delay for when the taunt should happen.
+	private AudioClip[] taunts;				// Array of clips for when the player taunts.
+	private float tauntProbability = 50f;	// Chance of a taunt happening.
+	private float tauntDelay = 1f;			// Delay for when the taunt should happen.
 
     public float playerSpeed;
     public float h;
@@ -31,8 +31,11 @@ public class PlayerControl : MonoBehaviour
     private bool ceiled;                    //Check if ceiling is above player
     private float crouch;
 
+    [HideInInspector]
     public bool crouching;
+    [HideInInspector]
     public bool wall;
+    [HideInInspector]
     public bool wallCrouch;
 
    
@@ -42,17 +45,29 @@ public class PlayerControl : MonoBehaviour
 	public bool grounded = false;			// Whether or not the player is grounded.
 	private Animator anim;					// Reference to the player's animator component.
     private Rigidbody rb;
-    private GameObject gameObject;
+    public GameObject gameObject;           //idk why is says it's not being used
+
+
+    //air dash variables
+    public bool dashEnabled;                //can this player air dash
+    private bool dash;
+    public float dashSpeed = 1000;          //how fast is the dash
+    private bool canDash;
+    private float dashTimer;
+    public float dashTimerTime = 0.25f;     //how long the dash will last
+    private float holdTimer;
+    public float holdTimerTime = 0.1f;      //how long the end of dash will hold player
 
 
     /*
      * 
-     * All this is used for laadder climbing
+     * All this is used for ladder climbing
      */
     public bool isOnLadder = false;
     public bool isClimbing = false;
     public bool canMove = true;
     public float speed = 2f;
+    private float cacheHealth;
 
 
     void Awake()
@@ -61,7 +76,8 @@ public class PlayerControl : MonoBehaviour
 		groundCheck = transform.Find("groundCheck");
 		anim = GetComponent<Animator>();
         rb = GetComponent<Rigidbody>();
-        gameObject = GetComponent<GameObject>();
+        //gameObject = GetComponent<GameObject>();
+        cacheHealth = PlayerHealth.visibleHealth;
 	}
 
 
@@ -92,6 +108,7 @@ public class PlayerControl : MonoBehaviour
         if (grounded)
         {
             anim.SetBool("OnGround", true);
+            canDash = true;
         }
         else
         {
@@ -127,11 +144,48 @@ public class PlayerControl : MonoBehaviour
         if (isClimbing)
         {
             anim.SetBool("Climbing", true);
+            if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.S))
+            {
+                anim.SetBool("Climbing Move", true);
+            }
+            else
+            {
+                anim.SetBool("Climbing Move", false);
+            }
         }
         else
         {
             anim.SetBool("Climbing", false);
         }
+
+
+        //dashing
+        if (Input.GetKeyDown(KeyCode.Mouse1) && grounded == false && canDash == true && dashEnabled == true)
+        {
+           dash = true;
+           dashTimer = dashTimerTime;
+            anim.SetBool("Dash", true);
+        }
+
+        if (dashTimer > 0)
+        {
+            dashTimer = dashTimer - Time.deltaTime;
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+            holdTimer = holdTimerTime;
+        }
+        else
+        {
+            GetComponent<Rigidbody2D>().gravityScale = 1;
+            if (holdTimer > 0)
+            {
+               
+                holdTimer -= Time.deltaTime;
+                playerSpeed = 0;
+                GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+                anim.SetBool("Dash", false);
+            }
+        }
+
     }
 
 
@@ -154,10 +208,11 @@ public class PlayerControl : MonoBehaviour
             {
                 GetComponent<Rigidbody2D>().velocity = new Vector2(0, -speed);
             }
-            else if (Input.GetKey(KeyCode.Space) || grounded)
+            else if (Input.GetKey(KeyCode.Space) || grounded || PlayerHealth.visibleHealth < cacheHealth)
             {
                 isClimbing = false;
                 jump = true;
+                cacheHealth = PlayerHealth.visibleHealth;
             }
             else
             {
@@ -258,7 +313,30 @@ public class PlayerControl : MonoBehaviour
 			// Make sure the player can't jump again until the jump conditions from Update are satisfied.
 			jump = false;
 		}
-	}
+
+
+        //air dash
+        var mousePos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        var mouseDir = mousePos - gameObject.transform.position;
+        mouseDir.z = 0.0f;
+        mouseDir = mouseDir.normalized * dashSpeed;
+
+        if (dash)
+        {
+
+            if(mouseDir.x < 0 && facingRight)
+            {
+                Flip();
+            }
+            else if(mouseDir.x > 0 && !facingRight)
+            {
+                Flip();
+            }
+            GetComponent<Rigidbody2D>().AddForce(new Vector2(mouseDir.x, mouseDir.y));
+            dash = false;
+            canDash = false;
+        }
+    }
 
     /// <summary>
     /// Check to see if we are intersecting with ladder
@@ -270,7 +348,6 @@ public class PlayerControl : MonoBehaviour
         {
             isOnLadder = true;
         }
-
     }
 
     /// <summary>
