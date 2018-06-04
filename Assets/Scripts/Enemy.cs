@@ -175,6 +175,7 @@ public class Enemy : MonoBehaviour
         }
         if(isGrounded == false)
         {
+            enemyBehaviour = EnemyBehaviour.Patrol;
             moveSpeed = 0;
         }
     }

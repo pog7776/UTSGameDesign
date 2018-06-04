@@ -53,5 +53,5 @@ public class Gun : MonoBehaviour
 				//bulletInstance.velocity = new Vector2(-speed, 0);
 			//}
 		}
-	}
+    }
 }

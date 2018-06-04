@@ -33,17 +33,17 @@ public class NextLevel : MonoBehaviour
 
             if (level == 1)
             {
-                SceneManager.LoadScene("level");
+                SceneManager.LoadScene("ControlRoom");
             }
 
             if (level == 2)
             {
-                SceneManager.LoadScene("level99");
+                SceneManager.LoadScene("level");
             }
 
             if (level == 3)
             {
-                SceneManager.LoadScene("level3");
+                SceneManager.LoadScene("level99");
             }
 
             if (level == 4)
