@@ -292,18 +292,25 @@ MonoBehaviour:
   - {fileID: 8300000, guid: fc55d077383484ac0ad66aa17fcd746f, type: 3}
   - {fileID: 8300000, guid: dafa1cc4eb8714341a7c595abfba35d8, type: 3}
   jumpForce: 500
+  taunts: []
+  tauntProbability: 50
+  tauntDelay: 1
   playerSpeed: 0
   h: 0
   originalJump: 500
   originalSpeed: 1
   crouchJump: 350
   crouchSpeed: 0.5
+  player: {fileID: 400020}
   ceilingCheck: {fileID: 400010}
   wallCheck: {fileID: 4478764792952482}
+  ceiled: 0
+  crouch: 0
   crouching: 0
   wall: 0
   wallCrouch: 0
   grounded: 0
+  rb: {fileID: 0}
   gameObject: {fileID: 100020}
   dashEnabled: 1
   dashSpeed: 1000
