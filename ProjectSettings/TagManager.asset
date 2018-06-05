@@ -23,6 +23,7 @@ TagManager:
   - Health
   - GM
   - Ladder
+  - Enemy_Fly
   layers:
   - Default
   - TransparentFX

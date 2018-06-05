@@ -18,14 +18,18 @@ public class PauseMenu : MonoBehaviour {
 
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if (GameIsPaused)
+            if (GameIsPaused && optionsMenu.activeInHierarchy == false)
             {
                 Resume();
+            }
+            else if (optionsMenu.activeInHierarchy == true)
+            {
+                Back();
             }
             else
             {
                 Pause();
-            }
+            } 
         }
 
     }
@@ -70,6 +74,7 @@ public class PauseMenu : MonoBehaviour {
         optionsMenu.SetActive(false);   //Exit options menu if active
         pauseMenuUI.SetActive(true);
         pauseMenuPanel.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void ToggleMusic()
