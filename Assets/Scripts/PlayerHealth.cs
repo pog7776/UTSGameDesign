@@ -29,6 +29,11 @@ public class PlayerHealth : MonoBehaviour
         heal = healer.GetComponent<HealthPickup>();
     }
 
+    public void SetHealth()
+    {
+        health = 100f;
+    }
+
     void Awake ()
 	{
 		// Setting up references.

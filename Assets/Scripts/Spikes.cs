@@ -5,9 +5,17 @@ using System.Collections;
 public class Spikes : MonoBehaviour
 {
 	public GameObject splash;
+    public PlayerControl player;
+    public PlayerHealth playerHealth;
+
+    void Start()
+    {
+        player = FindObjectOfType<PlayerControl>();
+        playerHealth = FindObjectOfType<PlayerHealth>();
+    }
 
 
-	void OnTriggerEnter2D(Collider2D col)
+    void OnTriggerEnter2D(Collider2D col)
 	{
 		// If the player hits the trigger...
 		if(col.gameObject.tag == "Player")
@@ -19,9 +27,10 @@ public class Spikes : MonoBehaviour
 			Instantiate(splash, col.transform.position, transform.rotation);
             // ... destroy the player.
             //Destroy (col.gameObject);
-            GameObject.FindGameObjectWithTag("Player").SetActive(false);
-            // ... reload the level.
-            StartCoroutine("ReloadGame");
+            // GameObject.FindGameObjectWithTag("Player").SetActive(false);
+            // // ... reload the level.
+            // StartCoroutine("ReloadGame");
+            Respawn();
 		}
 		else
 		{
@@ -38,6 +47,7 @@ public class Spikes : MonoBehaviour
 
                 // Destroy the enemy.
                 Destroy(col.gameObject);
+                //Respawn();
             }
 		}
 	}
@@ -49,4 +59,15 @@ public class Spikes : MonoBehaviour
 		// ... and then reload the level.
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
 	}
+
+
+    private void Respawn()
+    {
+        CheckPointController checkPoint = FindObjectOfType<CheckPointController>();
+
+        CheckPoints check = checkPoint.GetLastCheckPoint();
+        playerHealth.SetHealth();
+        player.SetPosition(check.checkPointPos);
+
+    }
 }
