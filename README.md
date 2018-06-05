@@ -14,7 +14,7 @@ S / Down:         Crouch
 
 Lmb / Ctrl:       Fire projectile
 
-Rmb:              Slash attack
+Rmb:              Air Dash
 
 R:                Restart scene
 
