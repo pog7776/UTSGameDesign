@@ -54,6 +54,7 @@ GameObject:
   - component: {fileID: 68090570826812858}
   - component: {fileID: 114602311579709854}
   - component: {fileID: 50007057202468726}
+  - component: {fileID: 95945569285356430}
   m_Layer: 10
   m_Name: fly_enemy
   m_TagString: Enemy_Fly
@@ -204,6 +205,24 @@ EdgeCollider2D:
   - {x: -2.350006, y: 1.8677831}
   - {x: -0.2089119, y: 1.6641617}
   - {x: -0.04508972, y: 1.3212347}
+--- !u!95 &95945569285356430
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1700697980960698}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1266197eba8555d478aa1f5c475af0be, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &114602311579709854
 MonoBehaviour:
   m_ObjectHideFlags: 1

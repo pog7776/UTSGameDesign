@@ -44,6 +44,8 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public bool wallCrouch;
 
+    private bool dead;
+
    
 
     private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
@@ -191,6 +193,11 @@ public class PlayerControl : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 anim.SetBool("Dash", false);
             }
+        }
+
+        if((GameObject.Find("Player").GetComponent<PlayerHealth>().health <= 0))
+        {
+            dead = true;
         }
 
     }
@@ -351,7 +358,7 @@ public class PlayerControl : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Ladder"))
+        if (other.CompareTag("Ladder") && dead == false)
         {
             isOnLadder = true;
             canDash = false;
