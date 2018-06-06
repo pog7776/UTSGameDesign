@@ -28,7 +28,7 @@ public class CheckPointController : MonoBehaviour {
 
     public CheckPoints GetLastCheckPoint()
     {
-        for(int i = 0; i < checkpoints.Length - 1; i++)
+        for(int i = 0; i < checkpoints.Length; i++)
         {
             if(checkpoints[i].isTriggered)
             {

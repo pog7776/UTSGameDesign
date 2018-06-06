@@ -22,6 +22,8 @@ public class PlayerHealth : MonoBehaviour
 	private Animator anim;						// Reference to the Animator on the player
     public float healAmount;
 
+    public float lives = 3; //amount of lives before truly dead
+
     private void Start()
     {
         GameObject healer = GameObject.FindGameObjectWithTag("Health");
@@ -163,21 +165,46 @@ public class PlayerHealth : MonoBehaviour
             //c.isTrigger = true;
         }
 
-        // Move all sprite parts of the player to the front
-        SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
-        foreach (SpriteRenderer s in spr)
+        if (lives == 0)
         {
-            s.sortingLayerName = "UI";
+            // Move all sprite parts of the player to the front
+            SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
+            foreach (SpriteRenderer s in spr)
+            {
+                s.sortingLayerName = "UI";
+            }
+
+            // ... disable user Player Control script
+            GetComponent<PlayerControl>().enabled = false;
+
+            // ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
+            GetComponentInChildren<Gun>().enabled = false;
+
+            // ... Trigger the 'Die' animation state
+            anim.SetTrigger("Die");
+            anim.SetTrigger("Dead");
+        }
+        else
+        {
+            lives--;
+            StartCoroutine("Respawn");
+            anim.SetTrigger("Die");
+            anim.SetTrigger("Dead");
+            
         }
 
-        // ... disable user Player Control script
-        GetComponent<PlayerControl>().enabled = false;
+    }
 
-        // ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
-        GetComponentInChildren<Gun>().enabled = false;
+    IEnumerator Respawn()
+    {
 
-        // ... Trigger the 'Die' animation state
-        anim.SetTrigger("Die");
-        anim.SetTrigger("Dead");
+
+        CheckPointController checkPoint = FindObjectOfType<CheckPointController>();
+        CheckPoints check = checkPoint.GetLastCheckPoint();
+        yield return new WaitForSeconds(0.5f);
+        this.health = check.health;
+        playerControl.SetPosition(check.checkPointPos);
+        anim.SetBool("OnGround", true);
+
     }
 }

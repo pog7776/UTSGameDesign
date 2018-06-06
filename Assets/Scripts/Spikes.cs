@@ -30,7 +30,7 @@ public class Spikes : MonoBehaviour
             // GameObject.FindGameObjectWithTag("Player").SetActive(false);
             // // ... reload the level.
             // StartCoroutine("ReloadGame");
-            Respawn();
+            StartCoroutine("Respawn");
 		}
 		else
 		{
@@ -61,12 +61,14 @@ public class Spikes : MonoBehaviour
 	}
 
 
-    private void Respawn()
+    IEnumerator Respawn()
     {
-        CheckPointController checkPoint = FindObjectOfType<CheckPointController>();
 
+
+        CheckPointController checkPoint = FindObjectOfType<CheckPointController>();
         CheckPoints check = checkPoint.GetLastCheckPoint();
-        playerHealth.SetHealth();
+        yield return new WaitForSeconds(0.5f);
+        playerHealth.health = check.health;
         player.SetPosition(check.checkPointPos);
 
     }

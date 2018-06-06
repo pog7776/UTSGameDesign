@@ -24,6 +24,7 @@ TagManager:
   - GM
   - Ladder
   - Enemy_Fly
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

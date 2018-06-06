@@ -7,6 +7,7 @@ public class CheckPoints : MonoBehaviour {
     private GameObject player;
     public Vector3 checkPointPos;
     public bool isTriggered;
+    public float health;
 
     public CheckPointController checkPointController;
 
@@ -29,6 +30,7 @@ public class CheckPoints : MonoBehaviour {
             checkPointController.SetAllCheckPointsToFalse();
             isTriggered = true;
             player = other.GetComponent<GameObject>();
+            health = FindObjectOfType<PlayerHealth>().health;
         }
     }
 }

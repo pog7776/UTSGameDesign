@@ -37,7 +37,7 @@ public class Remover : MonoBehaviour
             GameObject.FindGameObjectWithTag("Player").SetActive(false);
             // ... reload the level.
 
-            Respawn();
+            StartCoroutine("Respawn");
 
            // StartCoroutine("ReloadGame");
 		}
@@ -59,12 +59,16 @@ public class Remover : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
 	}
 
-    private void Respawn()
+    IEnumerator Respawn()
     {
         CheckPointController checkPoint = FindObjectOfType<CheckPointController>();
 
         CheckPoints check = checkPoint.GetLastCheckPoint();
-        playerHealth.SetHealth();
+
+        yield return new WaitForSeconds(0.5f);
+
+
+        playerHealth.health = check.health;
         player.SetPosition(check.checkPointPos);
         
     }
