@@ -202,6 +202,11 @@ public class PlayerControl : MonoBehaviour
 
     }
 
+    public void SetPosition(Vector3 a_pos)
+    {
+        this.transform.position = a_pos;
+    }
+
 
 	void FixedUpdate ()
 	{
@@ -212,7 +217,7 @@ public class PlayerControl : MonoBehaviour
          * We make sure we have disabled movement before we set isClimbing flag to be true
          * Allow controls to occurs from here instead until the player presses space or grounds themselves
          */
-        if(isClimbing)
+        if(isClimbing && isOnLadder)
         {
             if (Input.GetKey(KeyCode.W))
             {
