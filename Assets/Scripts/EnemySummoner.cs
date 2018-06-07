@@ -22,10 +22,6 @@ public class EnemySummoner : MonoBehaviour {
             active = true;
             Invoke("Spawn", 5);
         }
-        else
-        {
-            active = false;
-        }
 
         if (active)
         {
@@ -42,8 +38,7 @@ public class EnemySummoner : MonoBehaviour {
     void Spawn ()
     {
         Rigidbody2D bulletInstance = Instantiate(enemy, this.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-        if (active)
-            Invoke("Spawn", 5);
+        Invoke("Spawn", 5);
     }
 
 }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class BladeEnemy : MonoBehaviour {
 
 	public float range;
+    public int HP = 1;
 	public GameObject Player;
 	public Rigidbody2D myRigid;
 
@@ -21,5 +22,18 @@ public class BladeEnemy : MonoBehaviour {
 		} else {
 			myRigid.velocity = new Vector2(0 , 0);
 		}
-	}
+
+        if (HP <= 0)
+        {
+            Destroy(gameObject);
+            // GameObject.FindWithTag("enemy").SetActive = false;
+            //anim.SetTrigger("Dead");
+        }
+    }
+
+    public void Hurt()
+    {
+        // Reduce the number of hit points by one.
+        HP--;
+    }
 }
