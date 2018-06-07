@@ -67,6 +67,10 @@ public class PlayerControl : MonoBehaviour
     private float holdTimer;
     public float holdTimerTime = 0.1f;      //how long the end of dash will hold player
 
+    //ice controls
+    public float iceTimeDuration = 1;
+    private float iceTimer;
+
 
     /*
      * 
@@ -87,6 +91,7 @@ public class PlayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //gameObject = GetComponent<GameObject>();
         cacheHealth = PlayerHealth.visibleHealth;
+        iceTimer = iceTimeDuration;
 	}
 
 
@@ -391,7 +396,7 @@ public class PlayerControl : MonoBehaviour
 
         if (gameObject.tag == "Ice")
         {
-            GetComponent<Collider>().material.dynamicFriction = 1;
+         //   GetComponent<Collider>().material.dynamicFriction = 1;
         }
     }
     private void OnTriggerEnter2D(Collider2D collision)
@@ -405,8 +410,25 @@ public class PlayerControl : MonoBehaviour
         }
          if (gameObject.tag == "Ice")
             {
-                GetComponent<Collider>().material.dynamicFriction = 0;
+              //  GetComponent<Collider>().material.dynamicFriction = 0;
+              if (h > 0 && iceTimer > 0)
+            {
+                h = 1;
+                iceTimer = iceTimer - Time.deltaTime;
             }
+            else
+            {
+                iceTimer = iceTimeDuration;
+            }
+            
+              if (h < 0 && iceTimer > 0)
+            {
+                h = -1;
+                iceTimer = iceTimer - Time.deltaTime;
+            }
+
+            }
+            
         }
 
     void Flip ()
