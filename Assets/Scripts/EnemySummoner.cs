@@ -6,34 +6,39 @@ public class EnemySummoner : MonoBehaviour {
     public int HP = 2;
     public float range;
     public float timer;
-    public GameObject Player;
+    public GameObject player;
     public Rigidbody2D myRigid;
     public Rigidbody2D enemy;
     public bool active = false;
 
     // Use this for initialization
     void Start () {
-        Player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag("Player");
     }
 	
 	// Update is called once per frame
 	void Update () {
-        if (Vector3.Distance(Player.transform.position, this.transform.position) < range && !active)
+        if (player)
         {
-            active = true;
-            Invoke("Spawn", timer);
-        }
+            if (Vector3.Distance(player.transform.position, this.transform.position) < range && !active)
+            {
+                active = true;
+                Invoke("Spawn", timer);
+            }
 
-        if (active)
-        {
-            if (Vector3.Distance(Player.transform.position, this.transform.position) > range/2)
+            if (active)
             {
-                myRigid.AddForce(Player.transform.position - transform.position);
-            } else
-            {
-                myRigid.AddForce(- Player.transform.position + transform.position);
+                if (Vector3.Distance(player.transform.position, this.transform.position) > range / 2)
+                {
+                    myRigid.AddForce(player.transform.position - transform.position);
+                }
+                else
+                {
+                    myRigid.AddForce(-player.transform.position + transform.position);
+                }
             }
         }
+        
     }
 
     void Spawn ()
