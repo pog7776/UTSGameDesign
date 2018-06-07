@@ -25,6 +25,7 @@ TagManager:
   - Ladder
   - Enemy_Fly
   - Water
+  - Ice
   layers:
   - Default
   - TransparentFX

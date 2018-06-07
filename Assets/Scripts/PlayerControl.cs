@@ -379,16 +379,21 @@ public class PlayerControl : MonoBehaviour
         if (collision.tag == "Ladder")
         {
             isOnLadder = false;
-        } else if (collision.tag == "Water") {
+        }
+        else if (collision.tag == "Water")
+        {
             playerSpeed = playerSpeed * 2;
             maxSpeed = maxSpeed * 2;
             GetComponent<Rigidbody2D>().gravityScale = 1;
             jumpForce = jumpForce * 2;
             jump = false;
         }
-            
-    }
 
+        if (gameObject.tag == "Ice")
+        {
+            GetComponent<Collider>().material.dynamicFriction = 1;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Water") {
@@ -398,7 +403,11 @@ public class PlayerControl : MonoBehaviour
             jumpForce = jumpForce / 2;
             jump = true;
         }
-    }
+         if (gameObject.tag == "Ice")
+            {
+                GetComponent<Collider>().material.dynamicFriction = 0;
+            }
+        }
 
     void Flip ()
 	{
