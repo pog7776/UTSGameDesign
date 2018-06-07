@@ -29,8 +29,6 @@ public class BladeEnemy : MonoBehaviour {
         if (HP <= 0)
         {
             Destroy(gameObject);
-            // GameObject.FindWithTag("enemy").SetActive = false;
-            //anim.SetTrigger("Dead");
         }
     }
 

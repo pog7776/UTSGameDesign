@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 public class Rocket : MonoBehaviour
 {
@@ -14,6 +15,8 @@ public class Rocket : MonoBehaviour
     public float camShakeAmt = 0.1f;
     public float camShakeLength = 0.2f;
     CameraShake camShake;
+    public bool doCameraShake;
+    private Scene currentScene;
 
 
     void Start()
@@ -25,6 +28,18 @@ public class Rocket : MonoBehaviour
         if(camShake == null)
         {
             Debug.LogError("No CameraShake found...");
+        }
+
+
+        currentScene = SceneManager.GetActiveScene();
+
+        if (currentScene.name == "Level4")
+        {
+            doCameraShake = false;
+        }
+        else
+        {
+            doCameraShake = true;
         }
     }
 
@@ -38,7 +53,10 @@ public class Rocket : MonoBehaviour
         Instantiate(explosion, transform.position, randomRotation);
 
         //camera shake
-        //camShake.Shake(camShakeAmt, camShakeLength);
+        if (doCameraShake == true)
+        {
+            camShake.Shake(camShakeAmt, camShakeLength);
+        }
 
         if (heduken == true)
         {
