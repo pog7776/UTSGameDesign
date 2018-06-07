@@ -188,8 +188,7 @@ public class PlayerHealth : MonoBehaviour
         {
             lives--;
             StartCoroutine("Respawn");
-            anim.SetTrigger("Die");
-            anim.SetTrigger("Dead");
+
             
         }
 
