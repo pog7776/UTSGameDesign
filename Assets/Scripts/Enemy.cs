@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         myTransform = this.transform;
         myRigidbody = this.GetComponent<Rigidbody2D>();
         width = this.GetComponent<SpriteRenderer>().bounds.extents.x;
-
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         flipTimer = 0;
     }
 
@@ -76,15 +76,15 @@ public class Enemy : MonoBehaviour
         }
 
 
-        if(DetectPlayer(new Vector2(myTransform.localPosition.x, myTransform.localPosition.y), 3))
-        {
-            enemyBehaviour = EnemyBehaviour.Attack;
-        }
-        else
-        {
-            enemyBehaviour = EnemyBehaviour.Patrol;
-        }
-
+        //if(DetectPlayer(new Vector2(myTransform.localPosition.x, myTransform.localPosition.y), 3))
+        //{
+        //    enemyBehaviour = EnemyBehaviour.Attack;
+        //}
+        //else
+        //{
+        //    enemyBehaviour = EnemyBehaviour.Patrol;
+        //}
+        //
         Vector2 linecast = myTransform.position + myTransform.right * width;
         if ((int)myTransform.eulerAngles.y == 0)
         {
@@ -259,5 +259,14 @@ public class Enemy : MonoBehaviour
         Vector3 currentRotation = myTransform.eulerAngles;
         currentRotation.y += 180;
         myTransform.eulerAngles = currentRotation;
+    }
+
+    public void TestLocation()
+    {
+        float DotResult = Vector2.Dot(transform.forward, playerCheck.forward);
+        if(DotResult < 0)
+        {
+            Flip();
+        }
     }
 }
