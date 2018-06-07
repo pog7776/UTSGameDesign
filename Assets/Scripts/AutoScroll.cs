@@ -19,6 +19,7 @@ public class AutoScroll : MonoBehaviour
         // Setting up the reference.
         //player = GameObject.FindGameObjectWithTag("Player").transform;
         initSpeed = xSpeed;
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
     }
 
     bool CheckYMargin()
@@ -35,7 +36,7 @@ public class AutoScroll : MonoBehaviour
     void FixedUpdate()
     {
         TrackPlayer();
-        //player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (xSpeed - initSpeed)* 100);
+        player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (xSpeed - initSpeed)* 100);
     }
 
 
