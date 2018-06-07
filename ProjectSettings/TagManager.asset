@@ -25,6 +25,7 @@ TagManager:
   - Ladder
   - Enemy_Fly
   - Water
+  - Ice
   - Blade_Enemy
   - CheckPoint
   layers:
@@ -79,3 +80,4 @@ TagManager:
   - name: Foreground
     uniqueID: 1024582385
     locked: 0
+
