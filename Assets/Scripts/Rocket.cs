@@ -33,7 +33,7 @@ public class Rocket : MonoBehaviour
 
         currentScene = SceneManager.GetActiveScene();
 
-        if (currentScene.name == "Level4")
+        if (currentScene.name == "Level4" || currentScene.name =="ControlRoom")
         {
             doCameraShake = false;
         }
