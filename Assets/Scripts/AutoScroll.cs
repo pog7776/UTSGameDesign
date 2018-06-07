@@ -19,6 +19,7 @@ public class AutoScroll : MonoBehaviour
         // Setting up the reference.
         //player = GameObject.FindGameObjectWithTag("Player").transform;
         initSpeed = xSpeed;
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y, transform.position.z);
     }
 
     bool CheckYMargin()
