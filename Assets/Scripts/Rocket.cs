@@ -38,7 +38,7 @@ public class Rocket : MonoBehaviour
         Instantiate(explosion, transform.position, randomRotation);
 
         //camera shake
-        camShake.Shake(camShakeAmt, camShakeLength);
+        //camShake.Shake(camShakeAmt, camShakeLength);
 
         if (heduken == true)
         {
