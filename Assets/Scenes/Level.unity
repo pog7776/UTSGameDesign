@@ -1820,6 +1820,18 @@ Prefab:
       propertyPath: level
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 212521520505342994, guid: 5e2b95658d1af93459ea2f874fe2f16b,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7e25ce010972d8e4f808e38f0b13e024,
+        type: 3}
+    - target: {fileID: 212664165589921308, guid: 5e2b95658d1af93459ea2f874fe2f16b,
+        type: 2}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 21300000, guid: 7e25ce010972d8e4f808e38f0b13e024,
+        type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5e2b95658d1af93459ea2f874fe2f16b, type: 2}
   m_IsPrefabParent: 0
