@@ -25,6 +25,7 @@ TagManager:
   - Ladder
   - Enemy_Fly
   - Water
+  - Blade_Enemy
   layers:
   - Default
   - TransparentFX

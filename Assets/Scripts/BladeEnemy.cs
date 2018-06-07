@@ -22,7 +22,10 @@ public class BladeEnemy : MonoBehaviour {
 		} else {
 			myRigid.velocity = new Vector2(0 , 0);
 		}
+    }
 
+    private void FixedUpdate()
+    {
         if (HP <= 0)
         {
             Destroy(gameObject);
