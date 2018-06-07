@@ -40,7 +40,7 @@ public class CheckPointController : MonoBehaviour {
 
     public void SetAllCheckPointsToFalse()
     {
-        for (int i = 0; i < checkpoints.Length - 1; i++)
+        for (int i = 0; i < checkpoints.Length; i++)
         {
             checkpoints[i].isTriggered = false;
         }
