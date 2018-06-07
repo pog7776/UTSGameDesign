@@ -51,7 +51,7 @@ public class Enemy : MonoBehaviour
         myTransform = this.transform;
         myRigidbody = this.GetComponent<Rigidbody2D>();
         width = this.GetComponent<SpriteRenderer>().bounds.extents.x;
-
+        playerTransform = GameObject.FindGameObjectWithTag("Player").transform;
         flipTimer = 0;
     }
 

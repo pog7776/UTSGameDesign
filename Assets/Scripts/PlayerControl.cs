@@ -44,6 +44,8 @@ public class PlayerControl : MonoBehaviour
     [HideInInspector]
     public bool wallCrouch;
 
+    private bool dead;
+
    
 
     private int tauntIndex;					// The index of the taunts array indicating the most recent taunt.
@@ -191,6 +193,11 @@ public class PlayerControl : MonoBehaviour
                 GetComponent<Rigidbody2D>().velocity = Vector2.zero;
                 anim.SetBool("Dash", false);
             }
+        }
+
+        if((GetComponent<PlayerHealth>().health <= 0))
+        {
+            dead = true;
         }
 
     }
@@ -356,7 +363,7 @@ public class PlayerControl : MonoBehaviour
     /// <param name="other"></param>
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.CompareTag("Ladder"))
+        if (other.CompareTag("Ladder") && dead == false)
         {
             isOnLadder = true;
             canDash = false;
@@ -371,11 +378,32 @@ public class PlayerControl : MonoBehaviour
     /// When we exit we reset isOnLadder
     /// </summary>
     /// <param name="collision"></param>
+    /// //need to make boolean to allow continuous jumping when in water
     private void OnTriggerExit2D(Collider2D collision)
     {
-        isOnLadder = false;
+        if (collision.tag == "Ladder")
+        {
+            isOnLadder = false;
+        } else if (collision.tag == "Water") {
+            playerSpeed = playerSpeed * 2;
+            maxSpeed = maxSpeed * 2;
+            GetComponent<Rigidbody2D>().gravityScale = 1;
+            jumpForce = jumpForce * 2;
+            jump = false;
+        }
+            
     }
 
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Water") {
+            playerSpeed = playerSpeed / 2;
+            maxSpeed = maxSpeed / 2;
+            GetComponent<Rigidbody2D>().gravityScale = 0;
+            jumpForce = jumpForce / 2;
+            jump = true;
+        }
+    }
 
     void Flip ()
 	{

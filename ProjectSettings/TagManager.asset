@@ -24,6 +24,8 @@ TagManager:
   - GM
   - Ladder
   - Enemy_Fly
+  - Water
+  - Blade_Enemy
   - CheckPoint
   layers:
   - Default
