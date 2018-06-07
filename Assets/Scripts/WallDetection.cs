@@ -15,13 +15,13 @@ public class WallDetection : MonoBehaviour
     public float h;
 
     public Transform player;       // Reference to the player.
-    private GameObject[] transforms;
+    //private GameObject[] transforms;
 
 
     void Awake()
     {
         // Setting up the reference.
-        transforms = GameObject.FindGameObjectsWithTag("Player");
+        //transforms = GameObject.FindGameObjectsWithTag("Player");
     }
 
     void Update()
