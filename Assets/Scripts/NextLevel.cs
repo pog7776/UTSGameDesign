@@ -6,12 +6,35 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
 
+    private string sceneName;
+    private string lastLevel;
+    Scene currentScene;
     public int level;
 
     // Use this for initialization
     void Start()
     {
+       currentScene = SceneManager.GetActiveScene();
 
+        //if (currentScene.name == m_MyFirstScene)
+
+        sceneName = currentScene.name;
+
+        if(sceneName == "level99")
+        {
+            lastLevel = "level";
+        }
+
+        if (sceneName == "level3")
+        {
+            lastLevel = "level99";
+        }
+
+        if (sceneName == "level4")
+        {
+            lastLevel = "level3";
+        }
+        //ignore this stuff, became obsolete... using it for reference
     }
 
     // Update is called once per frame
@@ -44,6 +67,11 @@ public class NextLevel : MonoBehaviour
             if (level == 3)
             {
                 SceneManager.LoadScene("level99");
+            }
+
+            if (level == 4)
+            {
+                SceneManager.LoadScene("level3");
             }
 
             if (level == 4)
