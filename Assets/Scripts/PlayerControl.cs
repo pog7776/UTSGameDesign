@@ -67,6 +67,10 @@ public class PlayerControl : MonoBehaviour
     private float holdTimer;
     public float holdTimerTime = 0.1f;      //how long the end of dash will hold player
 
+    //ice controls
+    public float iceTimeDuration = 1;
+    private float iceTimer;
+
 
     /*
      * 
@@ -87,6 +91,7 @@ public class PlayerControl : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         //gameObject = GetComponent<GameObject>();
         cacheHealth = PlayerHealth.visibleHealth;
+        iceTimer = iceTimeDuration;
 	}
 
 
@@ -195,11 +200,16 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if((GameObject.Find("Player").GetComponent<PlayerHealth>().health <= 0))
+        if((GetComponent<PlayerHealth>().health <= 0))
         {
             dead = true;
         }
 
+    }
+
+    public void SetPosition(Vector3 a_pos)
+    {
+        this.transform.position = a_pos;
     }
 
 
@@ -212,7 +222,7 @@ public class PlayerControl : MonoBehaviour
          * We make sure we have disabled movement before we set isClimbing flag to be true
          * Allow controls to occurs from here instead until the player presses space or grounds themselves
          */
-        if(isClimbing)
+        if(isClimbing && isOnLadder)
         {
             if (Input.GetKey(KeyCode.W))
             {
@@ -379,16 +389,21 @@ public class PlayerControl : MonoBehaviour
         if (collision.tag == "Ladder")
         {
             isOnLadder = false;
-        } else if (collision.tag == "Water") {
+        }
+        else if (collision.tag == "Water")
+        {
             playerSpeed = playerSpeed * 2;
             maxSpeed = maxSpeed * 2;
             GetComponent<Rigidbody2D>().gravityScale = 1;
             jumpForce = jumpForce * 2;
             jump = false;
         }
-            
-    }
 
+        if (gameObject.tag == "Ice")
+        {
+         //   GetComponent<Collider>().material.dynamicFriction = 1;
+        }
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag == "Water") {
@@ -398,7 +413,28 @@ public class PlayerControl : MonoBehaviour
             jumpForce = jumpForce / 2;
             jump = true;
         }
-    }
+         if (gameObject.tag == "Ice")
+            {
+              //  GetComponent<Collider>().material.dynamicFriction = 0;
+              if (h > 0 && iceTimer > 0)
+            {
+                h = 1;
+                iceTimer = iceTimer - Time.deltaTime;
+            }
+            else
+            {
+                iceTimer = iceTimeDuration;
+            }
+            
+              if (h < 0 && iceTimer > 0)
+            {
+                h = -1;
+                iceTimer = iceTimer - Time.deltaTime;
+            }
+
+            }
+            
+        }
 
     void Flip ()
 	{
