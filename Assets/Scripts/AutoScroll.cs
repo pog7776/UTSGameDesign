@@ -35,7 +35,7 @@ public class AutoScroll : MonoBehaviour
     void FixedUpdate()
     {
         TrackPlayer();
-        player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (xSpeed - initSpeed)* 100);
+        //player.GetComponent<Rigidbody2D>().AddForce(Vector2.right * (xSpeed - initSpeed)* 100);
     }
 
 
