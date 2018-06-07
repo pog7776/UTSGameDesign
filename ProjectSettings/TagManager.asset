@@ -26,7 +26,7 @@ TagManager:
   - Enemy_Fly
   - Water
   - Blade_Enemy
-
+  - CheckPoint
   layers:
   - Default
   - TransparentFX
@@ -64,6 +64,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: UI
+    uniqueID: 149272721
+    locked: 0
   - name: Default
     uniqueID: 3363470833
     locked: 0
@@ -75,7 +78,4 @@ TagManager:
     locked: 0
   - name: Foreground
     uniqueID: 1024582385
-    locked: 0
-  - name: UI
-    uniqueID: 149272721
     locked: 0

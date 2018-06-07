@@ -117,7 +117,7 @@ public class Rocket : MonoBehaviour
         }
 
         // Objects to exclude
-        else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door" || col.gameObject.tag == "Collectable" || col.gameObject.tag == "Health" || col.gameObject.tag == "Ladder")
+        else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door" || col.gameObject.tag == "Collectable" || col.gameObject.tag == "Health" || col.gameObject.tag == "Ladder" || col.gameObject.tag == "CheckPoint")
         {
             //Put stuff here
         }
@@ -130,7 +130,7 @@ public class Rocket : MonoBehaviour
         }
 
         //Things to collide with
-        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Objects" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain")
+        else if (col.gameObject.tag != "Wall" || col.gameObject.tag != "Ground" || col.gameObject.tag != "Objects" || col.gameObject.tag != "HealthBar" || col.gameObject.tag != "KillPlain" )
         {
             OnExplode();
             Destroy(gameObject);
