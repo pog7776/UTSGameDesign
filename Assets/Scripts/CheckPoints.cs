@@ -32,6 +32,10 @@ public class CheckPoints : MonoBehaviour {
             isTriggered = true;
             player = other.GetComponent<GameObject>();
             health = FindObjectOfType<PlayerHealth>().health;
+           
+            
+            //if (health < 50)
+            //{ health = 50; }
         }
     }
 }
