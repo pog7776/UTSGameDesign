@@ -195,7 +195,7 @@ public class PlayerControl : MonoBehaviour
             }
         }
 
-        if((GameObject.Find("Player").GetComponent<PlayerHealth>().health <= 0))
+        if((GetComponent<PlayerHealth>().health <= 0))
         {
             dead = true;
         }

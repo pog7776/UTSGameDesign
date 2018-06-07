@@ -1848,7 +1848,6 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
-  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:
@@ -1891,7 +1890,7 @@ Transform:
   m_LocalScale: {x: 0.25, y: 0.25, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 14
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &420833740
 GameObject:
@@ -2120,7 +2119,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   visibleScore: 0
-  scoreText: {fileID: 1254469431}
+  scoreText: {fileID: 125629600}
 --- !u!212 &456952747
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3524,7 +3523,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 14
+  m_RootOrder: 15
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &819286505
 Prefab:
@@ -5933,12 +5932,6 @@ Transform:
   m_PrefabParentObject: {fileID: 4782207355196284, guid: 77470fa02234e354b9da87b299390e3d,
     type: 2}
   m_PrefabInternal: {fileID: 1251921146}
---- !u!114 &1254469431 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114016625832867792, guid: 52d852596f6103b4eba72a6774d27c8f,
-    type: 2}
-  m_PrefabInternal: {fileID: 1621407554}
-  m_Script: {fileID: 708705254, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!4 &1276366492 stripped
 Transform:
   m_PrefabParentObject: {fileID: 4597840778527982, guid: 73433473aee921a49b06c9378a85bc97,
