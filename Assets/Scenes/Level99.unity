@@ -4102,12 +4102,12 @@ Prefab:
     - target: {fileID: 212752926062310696, guid: 6aa187bc6339843479c03fdfd71404a3,
         type: 2}
       propertyPath: m_SortingLayerID
-      value: -1783731295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212752926062310696, guid: 6aa187bc6339843479c03fdfd71404a3,
         type: 2}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212752926062310696, guid: 6aa187bc6339843479c03fdfd71404a3,
         type: 2}
@@ -6516,6 +6516,11 @@ Prefab:
     - target: {fileID: 1311982641977622, guid: 9228b152eaeaba6469f89f71bc47b03a, type: 2}
       propertyPath: m_IsActive
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 212321455832008092, guid: 9228b152eaeaba6469f89f71bc47b03a,
+        type: 2}
+      propertyPath: m_SortingOrder
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9228b152eaeaba6469f89f71bc47b03a, type: 2}

@@ -4015,12 +4015,12 @@ Prefab:
     - target: {fileID: 212752926062310696, guid: 6aa187bc6339843479c03fdfd71404a3,
         type: 2}
       propertyPath: m_SortingLayerID
-      value: -1783731295
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212752926062310696, guid: 6aa187bc6339843479c03fdfd71404a3,
         type: 2}
       propertyPath: m_SortingLayer
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
