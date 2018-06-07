@@ -1229,12 +1229,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2a1ff7ff4ce484f1aad8887efed74b11, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  xMargin: 2
-  yMargin: 2
-  xSmooth: 2
-  ySmooth: 2
-  maxXAndY: {x: 100, y: 100}
-  minXAndY: {x: -100, y: -100}
+  xMargin: 1000
+  yMargin: 1000
+  xSmooth: 1000
+  ySmooth: 1000
+  maxXAndY: {x: 1000, y: 1000}
+  minXAndY: {x: -1000, y: -1000}
   player: {fileID: 137683286}
 --- !u!124 &859002604
 Behaviour:
