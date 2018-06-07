@@ -24,9 +24,9 @@ GameObject:
   - component: {fileID: 50811579286888642}
   - component: {fileID: 114630421336403416}
   - component: {fileID: 114765766495854888}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Blade
-  m_TagString: Enemy
+  m_TagString: Blade_Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1582915982057846}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 9.07, y: -7.26, z: 0}
+  m_LocalPosition: {x: 67.857796, y: -8.0624485, z: 0}
   m_LocalScale: {x: 10, y: 10, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -129,6 +129,7 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 4294967295
   m_Materials:
   - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
   m_StaticBatchInfo:

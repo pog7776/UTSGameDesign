@@ -54,7 +54,6 @@ public class Rocket : MonoBehaviour
         {
             // ... find the Enemy script and call the Hurt function.
             col.gameObject.GetComponent<Enemy>().Hurt();
-            col.gameObject.GetComponent<BladeEnemy>().Hurt();
 
             // Call the explosion instantiation.
             OnExplode();
@@ -65,7 +64,7 @@ public class Rocket : MonoBehaviour
         else if (col.tag == "Enemy_Fly")
         {
             // ... find the Enemy script and call the Hurt function.
-            col.gameObject.GetComponent<Enemy_Fly>().Hurt();
+            col.gameObject.GetComponent<BladeEnemy>().Hurt();
 
             // Call the explosion instantiation.
             OnExplode();
@@ -73,6 +72,19 @@ public class Rocket : MonoBehaviour
             // Destroy the rocket.
             Destroy(gameObject);
         }
+
+        else if (col.tag == "Blade_Enemy")
+        {
+            // ... find the Enemy script and call the Hurt function.
+            col.gameObject.GetComponent<BladeEnemy>().Hurt();
+
+            // Call the explosion instantiation.
+            OnExplode();
+
+            // Destroy the rocket.
+            Destroy(gameObject);
+        }
+
         // Otherwise if it hits a bomb crate...     need to remove this stuff
         else if (col.tag == "BombPickup")
         {
@@ -85,11 +97,13 @@ public class Rocket : MonoBehaviour
             // Destroy the rocket.
             Destroy(gameObject);
         }
+
         // Objects to exclude
         else if (col.gameObject.tag == "Player" || col.gameObject.tag == "Door" || col.gameObject.tag == "Collectable" || col.gameObject.tag == "Health" || col.gameObject.tag == "Ladder")
         {
             //Put stuff here
         }
+
         //Rocket collide with explosion
         else if (col.gameObject.tag != "Explosion" && ExplosionTriggerProjectile == true)
         {
