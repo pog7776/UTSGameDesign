@@ -20,7 +20,6 @@ GameObject:
   m_Component:
   - component: {fileID: 4474115371297700}
   - component: {fileID: 61239945049214238}
-  - component: {fileID: 114016471634325994}
   m_Layer: 0
   m_Name: Chain Long
   m_TagString: Ladder
