@@ -22,12 +22,12 @@ public class PlayerHealth : MonoBehaviour
 	private Animator anim;						// Reference to the Animator on the player
     public float healAmount;
 
-    public float lives = 3; //amount of lives before truly dead
+    public DeathCounterForAllLevels deathCounter; //amount of lives before truly dead
 
     private void Start()
     {
         GameObject healer = GameObject.FindGameObjectWithTag("Health");
-
+        deathCounter = FindObjectOfType<DeathCounterForAllLevels>();
         heal = healer.GetComponent<HealthPickup>();
     }
 
@@ -62,6 +62,10 @@ public class PlayerHealth : MonoBehaviour
         if (health > 100)
         {
             health = 100;
+        }
+        else if(health <= 0)
+        {
+            Die();
         }
 
         UpdateHealthBar();
@@ -165,8 +169,7 @@ public class PlayerHealth : MonoBehaviour
             //c.isTrigger = true;
         }
 
-        if (lives == 0)
-        {
+
             // Move all sprite parts of the player to the front
             SpriteRenderer[] spr = GetComponentsInChildren<SpriteRenderer>();
             foreach (SpriteRenderer s in spr)
@@ -183,14 +186,10 @@ public class PlayerHealth : MonoBehaviour
             // ... Trigger the 'Die' animation state
             anim.SetTrigger("Die");
             anim.SetTrigger("Dead");
-        }
-        else
-        {
-            lives--;
-            StartCoroutine("Respawn");
+        deathCounter.AddDeath();
 
-            
-        }
+        StartCoroutine("Respawn");
+
 
     }
 
@@ -200,10 +199,17 @@ public class PlayerHealth : MonoBehaviour
 
         CheckPointController checkPoint = FindObjectOfType<CheckPointController>();
         CheckPoints check = checkPoint.GetLastCheckPoint();
-        yield return new WaitForSeconds(0.5f);
-        this.health = check.health;
-        playerControl.SetPosition(check.checkPointPos);
-        anim.SetBool("OnGround", true);
 
+        health = check.health;
+
+        yield return new WaitForSeconds(3.0f);
+        anim.SetTrigger("Respawn");
+        playerControl.SetPosition(check.checkPointPos);
+
+        // ... disable user Player Control script
+        GetComponent<PlayerControl>().enabled = true;
+
+        // ... disable the Gun script to stop a dead guy shooting a nonexistant bazooka
+        GetComponentInChildren<Gun>().enabled = true;
     }
 }

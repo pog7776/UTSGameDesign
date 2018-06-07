@@ -15,6 +15,7 @@ public class CheckPoints : MonoBehaviour {
 	void Start () {
         checkPointPos = new Vector3(0, 0, 0);
         isTriggered = false;
+        checkPointController = FindObjectOfType<CheckPointController>();
 	}
 	
 	// Update is called once per frame

@@ -30,7 +30,8 @@ public class Spikes : MonoBehaviour
             // GameObject.FindGameObjectWithTag("Player").SetActive(false);
             // // ... reload the level.
             // StartCoroutine("ReloadGame");
-            StartCoroutine("Respawn");
+            playerHealth.health = 0;
+            //StartCoroutine("Respawn");
 		}
 		else
 		{

@@ -34,10 +34,10 @@ public class Remover : MonoBehaviour
 			//Instantiate(splash, col.transform.position, transform.rotation);
             // ... destroy the player.
             //Destroy (col.gameObject);
-            GameObject.FindGameObjectWithTag("Player").SetActive(false);
+            //GameObject.FindGameObjectWithTag("Player").SetActive(false);
             // ... reload the level.
-
-            StartCoroutine("Respawn");
+            playerHealth.health = 0;
+           // StartCoroutine("Respawn");
 
            // StartCoroutine("ReloadGame");
 		}
