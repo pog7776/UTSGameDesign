@@ -7,18 +7,19 @@ public class NextLevel : MonoBehaviour
 {
 
     private string sceneName;
-    private string lastLevel;
+    public static string lastLevel;
     Scene currentScene;
     public int level;
+
+    public string previousLevel;
 
     // Use this for initialization
     void Start()
     {
        currentScene = SceneManager.GetActiveScene();
-
-        //if (currentScene.name == m_MyFirstScene)
-
+        
         sceneName = currentScene.name;
+
 
         if(sceneName == "level99")
         {
@@ -40,7 +41,12 @@ public class NextLevel : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (currentScene.name != "ControlRoom") //currentScene.name != "Menu" || 
+        {
+            lastLevel = currentScene.name;
+        }
 
+        previousLevel = lastLevel;
     }
 
     void OnTriggerEnter2D(Collider2D col)
@@ -49,7 +55,7 @@ public class NextLevel : MonoBehaviour
         if (col.gameObject.tag == "Player")
         {
 
-            if (level == 0)
+            if (level == 0 || lastLevel == "level5")
             {
                 SceneManager.LoadScene("Menu");
             }
@@ -61,22 +67,27 @@ public class NextLevel : MonoBehaviour
 
             if (level == 2)
             {
-                SceneManager.LoadScene("level");
+                SceneManager.LoadScene("Level");
             }
 
-            if (level == 3)
+            if (previousLevel == "Level")
             {
-                SceneManager.LoadScene("level99");
+                SceneManager.LoadScene("Level99");
             }
 
-            if (level == 4)
+            if (lastLevel == "Level99")
             {
-                SceneManager.LoadScene("level3");
+                SceneManager.LoadScene("Level3");
             }
 
-            if (level == 4)
+            if (lastLevel == "Level3")
             {
-                SceneManager.LoadScene("level4");
+                SceneManager.LoadScene("Level4");
+            }
+
+            if (lastLevel == "Level4")
+            {
+                SceneManager.LoadScene("Level5");
             }
 
         }

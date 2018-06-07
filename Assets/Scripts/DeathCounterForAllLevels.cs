@@ -65,6 +65,9 @@ public class DeathCounterForAllLevels : MonoBehaviour {
             case "Menu":
                 deathCounter.text = "Total Deaths: " + deathAmount;
                 break;
+            case "ControlRoom":
+                deathCounter.text = "Total Deaths: " + deathAmount;
+                break;
             default:
                 break;
         }
