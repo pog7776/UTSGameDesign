@@ -5,6 +5,7 @@ using UnityEngine;
 public class EnemySummoner : MonoBehaviour {
     public int HP = 2;
     public float range;
+    public float timer;
     public GameObject Player;
     public Rigidbody2D myRigid;
     public Rigidbody2D enemy;
@@ -20,17 +21,17 @@ public class EnemySummoner : MonoBehaviour {
         if (Vector3.Distance(Player.transform.position, this.transform.position) < range && !active)
         {
             active = true;
-            Invoke("Spawn", 5);
+            Invoke("Spawn", timer);
         }
 
         if (active)
         {
             if (Vector3.Distance(Player.transform.position, this.transform.position) > range/2)
             {
-                myRigid.velocity = Player.transform.position - transform.position;
+                myRigid.AddForce(Player.transform.position - transform.position);
             } else
             {
-                myRigid.velocity = - Player.transform.position + transform.position;
+                myRigid.AddForce(- Player.transform.position + transform.position);
             }
         }
     }
@@ -38,7 +39,7 @@ public class EnemySummoner : MonoBehaviour {
     void Spawn ()
     {
         Rigidbody2D bulletInstance = Instantiate(enemy, this.transform.position, Quaternion.Euler(new Vector3(0, 0, 0)));
-        Invoke("Spawn", 5);
+        Invoke("Spawn", timer);
     }
 
 }
