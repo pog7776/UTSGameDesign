@@ -168,6 +168,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   HP: 2
   range: 10
+  timer: 5
   Player: {fileID: 0}
   myRigid: {fileID: 50266878648435798}
   enemy: {fileID: 50811579286888642, guid: a00f7b1ef63de1c4ab69aa957de56e80, type: 2}
