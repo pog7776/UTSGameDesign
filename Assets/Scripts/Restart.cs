@@ -6,6 +6,8 @@ using UnityEngine;
 public class Restart : MonoBehaviour
 {
 
+    Scene currentScene;
+
     private float restartGame;
     private PlayerControl playerControl;
 
@@ -18,14 +20,21 @@ public class Restart : MonoBehaviour
     {
         restartGame = Input.GetAxisRaw("Restart");
 
-        
+        currentScene = SceneManager.GetActiveScene();
 
 
-        if(restartGame != 0){
+
+
+        if (restartGame != 0){
             CheckPointController checkPoint = FindObjectOfType<CheckPointController>();
             CheckPoints check = checkPoint.GetLastCheckPoint();
 
             playerControl.SetPosition(check.checkPointPos);
+
+            if (currentScene.name =="Level4")
+            {
+                FindObjectOfType<Camera>().transform.position = check.camPos;
+            }
 
         }
     }
