@@ -3041,7 +3041,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11400002, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
       propertyPath: dashEnabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 212752926062310696, guid: 6aa187bc6339843479c03fdfd71404a3,
         type: 2}
