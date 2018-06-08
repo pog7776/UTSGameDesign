@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-
+using UnityEngine.SceneManagement;
 public class PlayerHealth : MonoBehaviour
 {	
 	public float health = 100f;					// The player's health.
@@ -23,6 +23,8 @@ public class PlayerHealth : MonoBehaviour
     public float healAmount;
 
     public DeathCounterForAllLevels deathCounter; //amount of lives before truly dead
+    private string sceneName;
+
 
     private void Start()
     {
@@ -205,7 +207,12 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(3.0f);
         anim.SetTrigger("Respawn");
         playerControl.SetPosition(check.checkPointPos);
-
+        sceneName = SceneManager.GetActiveScene().name;
+        if (sceneName.Equals("Level4"))
+        {
+            FindObjectOfType<Camera>().transform.position = check.camPos;
+        }
+        
         // ... disable user Player Control script
         GetComponent<PlayerControl>().enabled = true;
 
