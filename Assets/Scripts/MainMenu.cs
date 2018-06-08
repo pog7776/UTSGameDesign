@@ -8,6 +8,7 @@ public class MainMenu : MonoBehaviour {
     public GameObject mainMenuUI;
     public GameObject instructions;
     public GameObject optionsMenu;
+    public GameObject credits;
     public GameObject hero;
     public GameObject music;
 
@@ -45,6 +46,13 @@ public class MainMenu : MonoBehaviour {
         optionsMenu.SetActive(true);
     }
 
+    public void Credits()
+    {
+        mainMenuUI.SetActive(false);
+        hero.SetActive(false);
+        credits.SetActive(true);
+    }
+
     public void QuitGame()
     {
         Debug.Log("Quitting Game...");
@@ -57,6 +65,7 @@ public class MainMenu : MonoBehaviour {
         hero.SetActive(true);
         instructions.SetActive(false);
         optionsMenu.SetActive(false);   //Exit options menu if active
+        credits.SetActive(false);
         mainMenuUI.SetActive(true);
     }
 
