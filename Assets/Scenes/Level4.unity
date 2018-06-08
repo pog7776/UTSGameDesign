@@ -3238,7 +3238,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: -4.8, y: -0}
+  m_Offset: {x: -4.1162148, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3249,7 +3249,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1, y: 3.3}
+  m_Size: {x: 2.367571, y: 3.3}
   m_EdgeRadius: 0
 --- !u!61 &859002609
 BoxCollider2D:
@@ -3263,7 +3263,7 @@ BoxCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 1
   m_UsedByComposite: 0
-  m_Offset: {x: 4.8, y: 3}
+  m_Offset: {x: 4.1180077, y: 3}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -3272,9 +3272,9 @@ BoxCollider2D:
     adaptiveTilingThreshold: 0
     drawMode: 0
     adaptiveTiling: 0
-  m_AutoTiling: 0
+  m_AutoTiling: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 10}
+  m_Size: {x: 2.3639848, y: 10}
   m_EdgeRadius: 0
 --- !u!251 &859002610
 PlatformEffector2D:
@@ -4034,11 +4034,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4906786703709908, guid: 5e1f39db54052d543ac0f785cf5be044, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 133.32
+      value: 163.64
       objectReference: {fileID: 0}
     - target: {fileID: 4906786703709908, guid: 5e1f39db54052d543ac0f785cf5be044, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: -1.73
       objectReference: {fileID: 0}
     - target: {fileID: 4906786703709908, guid: 5e1f39db54052d543ac0f785cf5be044, type: 2}
       propertyPath: m_LocalPosition.z
@@ -4110,11 +4110,11 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -6.42
+      value: -6.34
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -12.12
+      value: -12.01
       objectReference: {fileID: 0}
     - target: {fileID: 400020, guid: 6aa187bc6339843479c03fdfd71404a3, type: 2}
       propertyPath: m_LocalPosition.z
@@ -8022,7 +8022,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   c: {fileID: 859002601}
-  speed: 0
+  speed: 0.02
 --- !u!61 &2042865799
 BoxCollider2D:
   m_ObjectHideFlags: 0
