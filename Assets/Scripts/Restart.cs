@@ -30,6 +30,11 @@ public class Restart : MonoBehaviour
             CheckPoints check = checkPoint.GetLastCheckPoint();
 
             playerControl.SetPosition(check.checkPointPos);
+            float currHealth = playerControl.GetComponent<PlayerHealth>().health;
+            if(currHealth < 50)
+            {
+                playerControl.GetComponent<PlayerHealth>().health = 50;
+            }
 
             if (currentScene.name =="Level4")
             {
