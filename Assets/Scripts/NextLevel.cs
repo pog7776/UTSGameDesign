@@ -90,6 +90,11 @@ public class NextLevel : MonoBehaviour
                 SceneManager.LoadScene("Level5");
             }
 
+            if (lastLevel == "Level5")
+            {
+                SceneManager.LoadScene("Menu");
+            }
+
         }
 
     }
