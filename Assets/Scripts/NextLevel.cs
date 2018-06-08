@@ -92,7 +92,7 @@ public class NextLevel : MonoBehaviour
 
             if (lastLevel == "Level5")
             {
-                SceneManager.LoadScene("Menu");
+                SceneManager.LoadScene("End");
             }
 
         }
